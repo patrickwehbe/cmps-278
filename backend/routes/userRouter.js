@@ -9,7 +9,6 @@ router.get("/logout", userControl.logout);
 router.post("/refresh_token", userControl.refreshToken);
 router.get("/info", auth, userControl.getUser);
 router.get("/all", userControl.getAllUsers);
-router.get("/progress", userControl.getProgress);
 
 router.get("/userinfo", userControl.getUserById);
 

@@ -1,4 +1,4 @@
-const Application = require("../models/application");
+const Application = require("../models/applications");
 // const bcrypt = require("bcrypt-nodejs");
 
 let refreshTokens = [];
