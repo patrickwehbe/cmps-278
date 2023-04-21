@@ -23,7 +23,7 @@ app.use(
 //Routes
 
 app.use("/user", require("./routes/userRouter"));
-
+app.use("/application", require("./routes/applicationRouter"));
 
 app.use("/", (req, res) => {
 	res.sendFile(path.resolve(__dirname + `/index.html`));
