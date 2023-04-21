@@ -1,67 +1,46 @@
 import React from "react";
 import "./Application.css";
-import CardTemplate from "../components/CardTemplate";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-
-function MultiActionAreaCard() {
-	return (
-		<Card sx={{ maxWidth: 345 }}>
-			<CardActionArea>
-				<CardMedia
-					component="img"
-					height="140"
-					image="/static/images/cards/contemplative-reptile.jpg"
-					alt="green iguana"
-				/>
-				<CardContent>
-					<Typography gutterBottom variant="h5" component="div">
-						Lizard
-					</Typography>
-					<Typography variant="body2" color="text.secondary">
-						Lizards are a widespread group of squamate reptiles, with over
-						6,000 species, ranging across all continents except Antarctica
-					</Typography>
-				</CardContent>
-			</CardActionArea>
-			<CardActions>
-				<Button size="small" color="primary">
-					Share
-				</Button>
-			</CardActions>
-		</Card>
-	);
-}
+import ApplicationCardTemplate from "../components/ApplicationCardTemplate";
+import { useGetAllApplicationsQuery } from "../api/applications.api";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 
 function Application() {
-	const applications = [
-		{
-			name: "name1",
-			description: "downdo dewod  dwenod wneo",
-			url: "https://sequelize.org/img/logo.svg",
-		},
-		{
-			name: "name1",
-			description: "downdo dewod  dwenod wneo",
-			url: "https://sequelize.org/img/logo.svg",
-		},
-		{
-			name: "name1",
-			description: "downdo dewod  dwenod wneo",
-			url: "https://sequelize.org/img/logo.svg",
-		},
-		{
-			name: "name1",
-			description: "downdo dewod  dwenod wneo",
-			url: "https://sequelize.org/img/logo.svg",
-		},
-	];
+	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
+		useGetAllApplicationsQuery({
+			pollingInterval: 0, // disable polling for this query
+			refetchOnMountOrArgChange: true,
+		});
+
+	if (isError) return <div>An error has occurred!</div>;
+
+	if (isFetching && !currentData)
+		return (
+			<Box sx={{ overflow: "hidden" }}>
+				<Skeleton variant="text" />
+			</Box>
+		);
 	return (
 		<div className="application">
-			<MultiActionAreaCard />
+			{currentData.map(
+				(application: {
+					application_id: any;
+					application_name: any;
+					application_image: any;
+					application_rating: any;
+					application_price: any;
+					application_author: any;
+				}) => (
+					<ApplicationCardTemplate
+						application_id={application.application_id}
+						application_name={application.application_name}
+						application_rating={application.application_rating}
+						application_price={application.application_price}
+						application_author={application.application_author}
+						application_image={application.application_image}
+					/>
+				)
+			)}
 		</div>
 	);
 }
