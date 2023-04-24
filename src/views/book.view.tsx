@@ -1,6 +1,6 @@
 import React from "react";
 import "./Book.css";
-import BookCardTemplate from "../components/BookCardTemplate";
+import BookCardTemplate from "../components/BooksCardTemplate";
 import { useGetAllBooksQuery } from "../api/books.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";

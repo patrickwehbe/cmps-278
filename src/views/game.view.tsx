@@ -1,9 +1,9 @@
 import React from "react";
 import "./Game.css";
-import gameCardTemplate from "../components/GameCardTemplate";
 import { useGetAllGamesQuery } from "../api/games.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
+import GameCardTemplate from "../components/GamesCardTemplate";
 
 function Game() {
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -30,7 +30,7 @@ function Game() {
 					game_rating: any;
 					game_price: any;
 					game_trailer: any;
-                    game_type: any;
+					game_type: any;
 				}) => (
 					<GameCardTemplate
 						game_id={game.game_id}
@@ -39,7 +39,7 @@ function Game() {
 						game_price={game.game_price}
 						game_author={game.game_trailer}
 						game_cover={game.game_image}
-                        game_type={game.game_type}
+						game_type={game.game_type}
 					/>
 				)
 			)}

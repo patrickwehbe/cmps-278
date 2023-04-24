@@ -1,4 +1,4 @@
-const book = require("../models/books");
+const book = require("../models/book");
 // const bcrypt = require("bcrypt-nodejs");
 
 let refreshTokens = [];
@@ -23,13 +23,8 @@ const bookControl = {
 	},
 	createBook: async (req, res) => {
 		try {
-			const {
-				book_name,
-				book_cover,
-				book_price,
-				book_author,
-				book_rating,
-			} = req.body;
+			const { book_name, book_cover, book_price, book_author, book_rating } =
+				req.body;
 
 			const newbook = await book.create({
 				book_name: book_name,
@@ -45,13 +40,8 @@ const bookControl = {
 	},
 	updateBook: async (req, res) => {
 		try {
-			const {
-				book_name,
-				book_cover,
-				book_price,
-				book_author,
-				book_rating,
-			} = req.body;
+			const { book_name, book_cover, book_price, book_author, book_rating } =
+				req.body;
 
 			const verifybook = await book.findOne({
 				where: { book_id: req.params.id },
