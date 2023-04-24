@@ -3,6 +3,7 @@ import { valueApi } from "../api";
 import { userApi } from "../api/user.api";
 import { applicationApi } from "../api/applications.api";
 import { bookApi } from "../api/books.api";
+import { gameApi } from "../api/games.api";
 
 export const store = configureStore({
 	reducer: {
@@ -10,9 +11,10 @@ export const store = configureStore({
 		[valueApi.reducerPath]: valueApi.reducer,
 		[applicationApi.reducerPath]: applicationApi.reducer,
 		[bookApi.reducerPath]: bookApi.reducer,
+		[gameApi.reducerPath]: gameApi.reducer,
 	},
 	middleware: (gDM) =>
-		gDM().concat(userApi.middleware, valueApi.middleware, applicationApi.middleware, bookApi.middleware),
+		gDM().concat(userApi.middleware, valueApi.middleware, applicationApi.middleware, bookApi.middleware, gameApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

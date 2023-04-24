@@ -8,7 +8,7 @@ const applicationControl = {
 			const application = await Application.findAll();
 			return res.send(application);
 		} catch (err) {
-			return res.status(500).json({ msg: "error from the server side" });
+			return res.status(500).send(err.message);
 		}
 	},
 	getOneApplication: async (req, res) => {
@@ -18,7 +18,7 @@ const applicationControl = {
 			});
 			return res.send(application);
 		} catch (err) {
-			return res.status(500).json({ msg: "error from the server side" });
+			return res.status(500).send(err.message);
 		}
 	},
 	createApplication: async (req, res) => {
@@ -40,7 +40,7 @@ const applicationControl = {
 			});
 			return res.send(newApplication);
 		} catch (err) {
-			return res.status(500).json({ msg: "error from the server side" });
+			return res.status(500).send({ error: err.message });
 		}
 	},
 	updateApplication: async (req, res) => {
@@ -76,7 +76,7 @@ const applicationControl = {
 				return res.status(404).send("Object not found in db");
 			}
 		} catch (err) {
-			return res.status(500).json({ msg: "error from the server side" });
+			return res.status(500).send(err.message);
 		}
 	},
 	deleteApplication: async (req, res) => {
@@ -88,7 +88,7 @@ const applicationControl = {
 			await Application.delete(req.params.id);
 			return res.send(`succesffuly deleted object id  ${req.params.id} `);
 		} catch (err) {
-			return res.status(500).json({ msg: "error from the server side" });
+			return res.status(500).send(err.message);
 		}
 	},
 };
