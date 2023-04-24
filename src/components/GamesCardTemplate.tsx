@@ -6,35 +6,39 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function ApplicationCardTemplate({
-  application_id,
-  application_name,
-  application_image,
-  application_rating,
-  application_price,
-  application_author,
+export default function GameCardTemplate({
+  game_id,
+  game_name,
+  game_image,
+  game_rating,
+  game_price,
+  game_trailer,
+  game_type,
 }: any) {
   return (
-    <Card sx={{ maxWidth: 345 }} key={application_id}>
+    <Card sx={{ maxWidth: 345 }} key={game_id}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image={application_image}
-          alt={application_name}
+          image={game_image}
+          alt={game_name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {application_name}
+            {game_name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {application_author}
+            {game_type}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {application_price}
+            {game_price}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {application_rating}
+            {game_rating}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {game_trailer}
           </Typography>
         </CardContent>
       </CardActionArea>

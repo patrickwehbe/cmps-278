@@ -6,35 +6,35 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
-export default function ApplicationCardTemplate({
-  application_id,
-  application_name,
-  application_image,
-  application_rating,
-  application_price,
-  application_author,
+export default function BookCardTemplate({
+  book_id,
+  book_name,
+  book_cover,
+  book_rating,
+  book_price,
+  book_author,
 }: any) {
   return (
-    <Card sx={{ maxWidth: 345 }} key={application_id}>
+    <Card sx={{ maxWidth: 345 }} key={book_id}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image={application_image}
-          alt={application_name}
+          image={book_cover}
+          alt={book_name}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {application_name}
+            {book_name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {application_author}
+            {book_author}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {application_price}
+            {book_price}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {application_rating}
+            {book_rating}
           </Typography>
         </CardContent>
       </CardActionArea>
