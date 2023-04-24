@@ -24,6 +24,8 @@ app.use(
 
 app.use("/user", require("./routes/userRouter"));
 app.use("/application", require("./routes/applicationRouter"));
+app.use("/book", require("./routes/bookRouter"));
+app.use("/game", require("./routes/gameRouter"));
 
 app.use("/", (req, res) => {
 	res.sendFile(path.resolve(__dirname + `/index.html`));
