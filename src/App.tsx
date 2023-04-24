@@ -8,12 +8,12 @@ import Login from "./views/Login";
 
 function App() {
   return (
-    <div className="app">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/value" element={<Value />} />
-          <Route path="/applications" element={<Application />} />
+		<div className="app">
+			<Router>
+				<Routes>
+					<Route path="/" element={<Login />} />
+					<Route path="/value" element={<Value />} />
+					<Route path="/applications" element={<Application />} />
 				</Routes>
 			</Router>
 		</div>
