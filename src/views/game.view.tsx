@@ -30,7 +30,7 @@ function Game() {
 					game_rating: any;
 					game_price: any;
 					game_trailer: any;
-                    game_type: any;
+					game_type: any;
 				}) => (
 					<GameCardTemplate
 						game_id={game.game_id}
@@ -39,7 +39,7 @@ function Game() {
 						game_price={game.game_price}
 						game_author={game.game_trailer}
 						game_cover={game.game_image}
-                        game_type={game.game_type}
+						game_type={game.game_type}
 					/>
 				)
 			)}

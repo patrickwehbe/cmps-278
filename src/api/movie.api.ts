@@ -9,7 +9,7 @@ export const movieApi = createApi({
 	endpoints: (build) => ({
 		// GET all movies start region
 		getAllMovies: build.query({
-			query: () => `all`,
+			query: () => `/all`,
 		}),
 		// GET all movies end region
 

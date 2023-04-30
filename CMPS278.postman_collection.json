@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "d6df592c-6cdd-4316-9167-fa7ac5590304",
+		"name": "CMPS278",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12608886"
+	},
+	"item": [
+		{
+			"name": "Applications",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/application/all",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"application",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create applications",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"application_name\": \"app 1\",\n    \"application_image\": \"image\",\n    \"application_price\": 1.23,\n    \"application_author\": \"author 1\",\n    \"application_rating\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/application/createApplication",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"application",
+								"createApplication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update application",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"application_name\": \"updated name \",\n    \"application_image\": \"updated image\",\n    \"application_price\": 9.99,\n    \"application_author\": \"updated author 1\",\n    \"application_rating\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/application/update/1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"application",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delele application",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:4000/application/deleteApplication/1",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"application",
+								"deleteApplication",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "create movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"movie_name\": \"movie_name\",\n    \"movie_image\": \"movie_image\",\n    \"movie_price\": \"movie_price\",\n    \"movie_director\": \"movie_director\",\n    \"movie_rating\": 1,\n    \"date_released\": \"24-aprl=212\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/movie/createMovie",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"movie",
+								"createMovie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/movie/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"movie",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,7 +1,7 @@
 import React from "react";
-import "./Movie.css";
+
 import MovieCardTemplate from "../components/MovieCardTemplate";
-import { useGetAllMoviesQuery } from "../api/movies.api";
+import { useGetAllMoviesQuery } from "../api/movie.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 
