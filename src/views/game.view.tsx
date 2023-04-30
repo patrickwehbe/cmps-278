@@ -1,9 +1,9 @@
 import React from "react";
 import "./Game.css";
-import gameCardTemplate from "../components/GameCardTemplate";
 import { useGetAllGamesQuery } from "../api/games.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
+import GameCardTemplate from "../components/GamesCardTemplate";
 
 function Game() {
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =

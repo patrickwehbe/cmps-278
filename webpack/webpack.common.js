@@ -53,7 +53,7 @@ module.exports = {
 		}),
 
 		new Dotenv({
-			path: "./.env",
+			path: "./backend/.env",
 		}),
 	],
 };
