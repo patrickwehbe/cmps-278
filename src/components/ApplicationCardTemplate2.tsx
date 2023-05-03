@@ -25,10 +25,11 @@ export default function ApplicationCardTemplate2({
           image={application_image}
           alt={application_name}
           style={{
-            width: '200px',
-            height: '200px',
+            width: '150px',
+            height: '150px',
             objectFit: 'cover',
-            borderRadius: '30px'
+            borderRadius: '30px',
+            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1), -2px 0 4px rgba(0, 0, 0, 0.1), 2px 0 4px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(0, 0, 0, 0.1)"
           }}
         />
         <CardContent>
