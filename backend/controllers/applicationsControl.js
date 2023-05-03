@@ -26,6 +26,7 @@ const applicationControl = {
 			const {
 				application_name,
 				application_image,
+				application_trailer,
 				application_price,
 				application_author,
 				application_rating,
@@ -34,6 +35,7 @@ const applicationControl = {
 			const newApplication = await Application.create({
 				application_name: application_name,
 				application_image: application_image,
+				application_trailer: application_trailer,
 				application_price: application_price,
 				application_author: application_author,
 				application_rating: application_rating,
@@ -48,6 +50,7 @@ const applicationControl = {
 			const {
 				application_name,
 				application_image,
+				application_trailer,
 				application_price,
 				application_author,
 				application_rating,
@@ -61,6 +64,7 @@ const applicationControl = {
 					{
 						application_name: application_name,
 						application_image: application_image,
+						application_trailer: application_trailer,
 						application_price: application_price,
 						application_author: application_author,
 						application_rating: application_rating,
@@ -86,7 +90,7 @@ const applicationControl = {
 			});
 			if (!verifyApplication) return res.status(404).send("Object not found in db");
 			await Application.delete(req.params.id);
-			return res.send(`succesffuly deleted object id  ${req.params.id} `);
+			return res.send(`successfully deleted object id  ${req.params.id} `);
 		} catch (err) {
 			return res.status(500).send(err.message);
 		}

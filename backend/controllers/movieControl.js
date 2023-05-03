@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-const Movie = require("../models/movie");
+const Movie = require("../models/movies");
 // const bcrypt = require("bcrypt-nodejs");
 
 let refreshTokens = [];

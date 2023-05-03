@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-const game = require("../models/game");
+const game = require("../models/games");
 // const bcrypt = require("bcrypt-nodejs");
 
 let refreshTokens = [];
@@ -30,7 +29,7 @@ const gameControl = {
 				game_price,
 				game_trailer,
 				game_rating,
-				game_type,
+                game_type,
 			} = req.body;
 
 			const newgame = await game.create({
@@ -39,7 +38,7 @@ const gameControl = {
 				game_price: game_price,
 				game_trailer: game_trailer,
 				game_rating: game_rating,
-				game_type: game_type,
+                game_type: game_type,
 			});
 			return res.send(newgame);
 		} catch (err) {
@@ -54,7 +53,7 @@ const gameControl = {
 				game_price,
 				game_trailer,
 				game_rating,
-				game_type,
+                game_type,
 			} = req.body;
 
 			const verifygame = await game.findOne({
@@ -68,7 +67,7 @@ const gameControl = {
 						game_price: game_price,
 						game_trailer: game_trailer,
 						game_rating: game_rating,
-						game_type: game_type,
+                        game_type: game_type,
 					},
 					{
 						where: {

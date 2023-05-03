@@ -15,11 +15,19 @@ const Application = db.define(
 			type: sequelize.STRING,
 			allowNull: false,
 		},
+
 		application_image: {
 			type: sequelize.STRING,
 			allowNull: false,
 			unique: true,
 		},
+
+		application_trailer: {
+			type: sequelize.STRING,
+			allowNull: false,
+			unique: true,
+		},
+
 		application_rating: {
 			type: sequelize.FLOAT,
 			allowNull: false,
@@ -48,6 +56,8 @@ const Application = db.define(
 		],
 	}
 );
+
+queryInterface.addColumn("applications", "application_trailer", sequelize.STRING);
 
 // Drop table if the Schema changed
 
