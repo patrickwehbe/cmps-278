@@ -5,6 +5,7 @@ import ApplicationCardTemplate2 from "../components/ApplicationCardTemplate2";
 import { useGetAllApplicationsQuery } from "../api/applications.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
+import { Link } from 'react-router-dom';
 
 function Application() {
   const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -66,6 +67,13 @@ function Application() {
           <div key={`column-${columnIndex}`} className="application-column">
             {column.map((application) => (
               <div key={application.application_id} className="application-card-wrapper">
+				<Link 
+			  	to={`/details/${application.application_id}`}
+				style={{
+					textDecoration: 'none',
+					color: 'inherit', // Adjust the color value as needed
+				  }} 
+				  >
                 <ApplicationCardTemplate className="application-card1"
                   application_id={application.application_id}
                   application_name={application.application_name}
@@ -75,6 +83,7 @@ function Application() {
                   application_image={application.application_image}
                   application_trailer={application.application_trailer}
                 />
+				</Link>
               </div>
             ))}
           </div>
@@ -93,6 +102,13 @@ function Application() {
             application_author: any,
           }) => (
             <div className="application-card">
+			  <Link 
+			  	to={`/details/${application.application_id}`}
+				style={{
+					textDecoration: 'none',
+					color: 'inherit', // Adjust the color value as needed
+				  }} 
+				  >
               <ApplicationCardTemplate2
                 application_id={application.application_id}
                 application_name={application.application_name}
@@ -102,6 +118,7 @@ function Application() {
                 application_image={application.application_image}
                 application_trailer={application.application_trailer}
               />
+			  </Link>
             </div>
           )
         )}
@@ -120,6 +137,13 @@ function Application() {
             application_author: any,
           }) => (
             <div className="application-card">
+			<Link 
+			  	to={`/details/${application.application_id}`}
+				style={{
+					textDecoration: 'none',
+					color: 'inherit', // Adjust the color value as needed
+				  }} 
+				  >
               <ApplicationCardTemplate2
                 application_id={application.application_id}
                 application_name={application.application_name}
@@ -129,6 +153,7 @@ function Application() {
                 application_image={application.application_image}
                 application_trailer={application.application_trailer}
               />
+			  </Link>
             </div>
           )
         )}
@@ -148,6 +173,13 @@ function Application() {
             application_author: any,
           }) => (
             <div className="application-card">
+			  <Link 
+			  	to={`/details/${application.application_id}`}
+				style={{
+					textDecoration: 'none',
+					color: 'inherit', // Adjust the color value as needed
+				  }} 
+				  >
               <ApplicationCardTemplate2
                 application_id={application.application_id}
                 application_name={application.application_name}
@@ -157,6 +189,7 @@ function Application() {
                 application_image={application.application_image}
                 application_trailer={application.application_trailer}
               />
+			  </Link>
             </div>
           )
         )}

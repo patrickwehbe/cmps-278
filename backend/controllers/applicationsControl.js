@@ -14,7 +14,7 @@ const applicationControl = {
 	getOneApplication: async (req, res) => {
 		try {
 			const application = await Application.findOne({
-				where: req.application.application_id,
+				application_id: req.params.id,
 			});
 			return res.send(application);
 		} catch (err) {
