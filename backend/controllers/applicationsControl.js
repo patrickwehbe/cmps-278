@@ -16,6 +16,7 @@ const applicationControl = {
 			const application = await Application.findOne({
 				application_id: req.params.id,
 			});
+
 			return res.send(application);
 		} catch (err) {
 			return res.status(500).send(err.message);
@@ -30,6 +31,9 @@ const applicationControl = {
 				application_price,
 				application_author,
 				application_rating,
+				application_image1,
+				application_image2,
+				application_image3,
 			} = req.body;
 
 			const newApplication = await Application.create({
@@ -39,6 +43,9 @@ const applicationControl = {
 				application_price: application_price,
 				application_author: application_author,
 				application_rating: application_rating,
+				application_image1: application_image1,
+				application_image2: application_image2,
+				application_image3: application_image3,
 			});
 			return res.send(newApplication);
 		} catch (err) {
@@ -54,6 +61,9 @@ const applicationControl = {
 				application_price,
 				application_author,
 				application_rating,
+				application_image1,
+				application_image2,
+				application_image3,
 			} = req.body;
 
 			const verifyApplication = await Application.findOne({
@@ -68,6 +78,9 @@ const applicationControl = {
 						application_price: application_price,
 						application_author: application_author,
 						application_rating: application_rating,
+						application_image1: application_image1,
+						application_image2: application_image2,
+						application_image3: application_image3,
 					},
 					{
 						where: {
