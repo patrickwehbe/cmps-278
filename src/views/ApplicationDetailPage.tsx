@@ -14,6 +14,11 @@ function ApplicationDetailPage() {
   return (
     <div>
       <ApplicationDetail
+        application_image1={data.application_image1}
+        application_image2={data.application_image2}
+        application_image3={data.application_image3}
+        application_trailer={data.application_trailer}
+        application_price={data.application_price}
         application_id={data.application_id}
         application_name={data.application_name}
         application_image={data.application_image}
