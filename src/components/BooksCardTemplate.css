@@ -1,0 +1,30 @@
+img.bookimage1{
+    border-radius: 10%;
+    margin-bottom: 80%;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  
+  .card .bookId{
+    margin-bottom: 40%;
+  }
+  
+  .card .bookDetails {
+    margin-bottom: 30%;
+  }
+  
+  @media (max-width: 600px) {
+    .BookDetails {
+      text-align: center;
+    }
+    .card {
+      margin-bottom: 16px;
+      background-color: white;
+    }
+  }
+  

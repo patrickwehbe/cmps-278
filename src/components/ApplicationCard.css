@@ -11,20 +11,19 @@ img.appimage1{
 
 
 .card .appId{
-    margin-bottom: 40%;
+  margin-bottom: 40%;
 }
 
 .card .appDetails {
-    margin-bottom: 30%;
+  margin-bottom: 30%;
 }
 
 @media (max-width: 600px) {
-    .AppDetails {
-      text-align: center;
-    }
-    .card {
-      margin-bottom: 16px;
-      background-color: white;
-    }
+  .AppDetails {
+    text-align: center;
   }
-  
+  .card {
+    margin-bottom: 16px;
+    background-color: white;
+  }
+}

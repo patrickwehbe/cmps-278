@@ -5,18 +5,18 @@ let refreshTokens = [];
 const bookControl = {
 	getBooks: async (req, res) => {
 		try {
-			const book = await book.findAll();
-			return res.send(book);
+			const result = await book.findAll();
+			return res.send(result);
 		} catch (err) {
 			return res.status(500).json({ msg: "error from the server side" });
 		}
 	},
 	getOneBook: async (req, res) => {
 		try {
-			const book = await book.findOne({
+			const result = await book.findOne({
 				where: req.book.book_id,
 			});
-			return res.send(book);
+			return res.send(result);
 		} catch (err) {
 			return res.status(500).json({ msg: "error from the server side" });
 		}
