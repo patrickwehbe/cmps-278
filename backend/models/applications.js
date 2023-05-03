@@ -57,6 +57,7 @@ const Application = db.define(
 	}
 );
 
+
 // Drop table if the Schema changed
 
 // db.sync().then(() => {

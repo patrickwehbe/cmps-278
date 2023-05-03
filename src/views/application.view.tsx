@@ -5,6 +5,7 @@ import ApplicationCardTemplate2 from "../components/ApplicationCardTemplate2";
 import { useGetAllApplicationsQuery } from "../api/applications.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
+import { Link } from 'react-router-dom';
 
 function Application() {
   const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -66,6 +67,13 @@ function Application() {
           <div key={`column-${columnIndex}`} className="application-column">
             {column.map((application) => (
               <div key={application.application_id} className="application-card-wrapper">
+				<Link 
+			  	to={`/details/${application.application_id}`}
+				style={{
+					textDecoration: 'none',
+					color: 'inherit', // Adjust the color value as needed
+				  }} 
+				  >
                 <ApplicationCardTemplate className="application-card1"
                   application_id={application.application_id}
                   application_name={application.application_name}
@@ -75,6 +83,7 @@ function Application() {
                   application_image={application.application_image}
                   application_trailer={application.application_trailer}
                 />
+				</Link>
               </div>
             ))}
           </div>
@@ -93,6 +102,13 @@ function Application() {
             application_author: any,
           }) => (
             <div className="application-card">
+			  <Link 
+			  	to={`/details/${application.application_id}`}
+				style={{
+					textDecoration: 'none',
+					color: 'inherit', // Adjust the color value as needed
+				  }} 
+				  >
               <ApplicationCardTemplate2
                 application_id={application.application_id}
                 application_name={application.application_name}
@@ -102,68 +118,14 @@ function Application() {
                 application_image={application.application_image}
                 application_trailer={application.application_trailer}
               />
+			  </Link>
             </div>
           )
         )}
       </div>
 
-	  <h2 className="recommendedtext">New Releases</h2>
-      <div className="application2">
-        {newReleasesApps.map(
-          (application: {
-            application_id: any,
-            application_name: any,
-            application_image: any,
-            application_trailer: any,
-            application_rating: any,
-            application_price: any,
-            application_author: any,
-          }) => (
-            <div className="application-card">
-              <ApplicationCardTemplate2
-                application_id={application.application_id}
-                application_name={application.application_name}
-                application_rating={application.application_rating}
-                application_price={application.application_price}
-                application_author={application.application_author}
-                application_image={application.application_image}
-                application_trailer={application.application_trailer}
-              />
-            </div>
-          )
-        )}
-		
-      </div>
-
-	  <h2 className="recommendedtext">Top Selling</h2>
-      <div className="application2">
-        {topSellingApps.map(
-          (application: {
-            application_id: any,
-            application_name: any,
-            application_image: any,
-            application_trailer: any,
-            application_rating: any,
-            application_price: any,
-            application_author: any,
-          }) => (
-            <div className="application-card">
-              <ApplicationCardTemplate2
-                application_id={application.application_id}
-                application_name={application.application_name}
-                application_rating={application.application_rating}
-                application_price={application.application_price}
-                application_author={application.application_author}
-                application_image={application.application_image}
-                application_trailer={application.application_trailer}
-              />
-            </div>
-          )
-        )}
-		
-      </div>
-    </div>
-  );
-}
+			</div>
+		  );
+		}
 
 export default Application;
