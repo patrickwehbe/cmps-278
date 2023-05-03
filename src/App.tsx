@@ -6,6 +6,7 @@ import Value from "./views/value.view";
 import Application from "./views/application.view";
 import Movie from "./views/movie.view";
 import Login from "./views/Login";
+import Book from "./views/book.view";
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 					<Route path="/value" element={<Value />} />
 					<Route path="/applications" element={<Application />} />
 					<Route path="/movie" element={<Movie />} />
+					<Route path="/books" element={<Book />} />
 				</Routes>
 			</Router>
 		</div>

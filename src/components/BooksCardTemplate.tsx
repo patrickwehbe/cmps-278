@@ -5,6 +5,8 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import "./BooksCardTemplate.css";
+
 
 export default function BookCardTemplate({
   book_id,
@@ -19,7 +21,7 @@ export default function BookCardTemplate({
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="300"
           image={book_cover}
           alt={book_name}
         />
@@ -39,9 +41,6 @@ export default function BookCardTemplate({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
       </CardActions>
     </Card>
   );

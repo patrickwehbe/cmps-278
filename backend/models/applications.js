@@ -57,8 +57,6 @@ const Application = db.define(
 	}
 );
 
-queryInterface.addColumn("applications", "application_trailer", sequelize.STRING);
-
 // Drop table if the Schema changed
 
 // db.sync().then(() => {
