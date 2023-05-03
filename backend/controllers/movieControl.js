@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 const Movie = require("../models/movie");
 // const bcrypt = require("bcrypt-nodejs");
 

@@ -1,6 +1,37 @@
 .application {
 	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	gap: 20px;
-}
+	overflow-x: auto;
+	margin-left: 70px;
+	margin-top: 250px;
+  }
+
+  .application2{
+	display: flex;
+	overflow-x: auto;
+	margin-left: 70px;
+	white-space: nowrap;
+  }
+
+  .application-card {
+	flex-shrink: 0; /* Add this */
+	margin-right: 20px; /* Adjust the value as needed */
+  }
+  
+  .application-column {
+	display: flex;
+	flex-direction: column;
+	margin-right: 100px;
+  }
+  
+  .application-card-wrapper {
+	margin-bottom: 16px;
+  }
+
+  .recommendedtext{
+	margin-left: 80px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 24px;
+  	font-weight: 700;
+  	color: #333;
+  }
+  

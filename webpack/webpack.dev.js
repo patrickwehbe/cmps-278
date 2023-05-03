@@ -9,5 +9,6 @@ module.exports = {
 			"process.env.name": JSON.stringify("dev"),
 			"process.env.VALUE_SERVICE_URL": JSON.stringify("http://localhost:4001"),
 		}),
+		
 	],
 };

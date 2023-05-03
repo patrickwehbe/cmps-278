@@ -1,0 +1,29 @@
+img.appimage1{
+    border-radius: 10%;
+    margin-bottom: 80%;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+
+}
+
+
+.card .appId{
+    margin-bottom: 40%;
+}
+
+.card .appDetails {
+    margin-bottom: 30%;
+}
+
+@media (max-width: 600px) {
+    .AppDetails {
+      text-align: center;
+    }
+    .card {
+      margin-bottom: 16px;
+      background-color: white;
+    }
+  }
+  
