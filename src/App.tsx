@@ -17,7 +17,6 @@ function App() {
 					<Route path="/value" element={<Value />} />
 					<Route path="/applications" element={<Application />} />
 					<Route path="/movie" element={<Movie />} />
-          <Route path="/details/:id" element={<ApplicationDetailPage />} />
 				</Routes>
 			</Router>
 		</div>
