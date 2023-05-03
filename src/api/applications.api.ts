@@ -15,7 +15,7 @@ export const applicationApi = createApi({
 
 		// GET one value start region
 		getOneApplication: build.query({
-			query: (id) => `/${id}`,
+			query: (id) => `/one/${id}`,
 		}),
 		// GET one value end region
 
