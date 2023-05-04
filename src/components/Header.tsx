@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 	return (
 		<AppBar
 			position="static"
-			sx={{ bgcolor: "#fff", color: "#000", marginBottom: "10vh" }}
+			sx={{ bgcolor: "#fff", color: "#000", marginBottom: "80px" }}
 		>
 			<Toolbar sx={{ justifyContent: "space-between" }}>
 				<Box display="flex" alignItems="center">

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -16,14 +17,14 @@ export default function GameCardTemplate({
 }: any) {
   return (
     <Card sx={{ maxWidth: 345 }} key={game_id}>
-      <CardActionArea>
-        <CardMedia
-          component="iframe"
-          title="Game Trailer"
-          height="200"
-          width="100%"
-          src={game_trailer}
-        />
+      <CardMedia
+        component="iframe"
+        height="140"
+        title="YouTube video"
+        frameBorder="0"
+        src={game_trailer}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+      />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {game_name}
@@ -41,7 +42,6 @@ export default function GameCardTemplate({
             {game_trailer}
           </Typography>
         </CardContent>
-      </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
           Share

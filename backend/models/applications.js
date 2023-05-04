@@ -59,6 +59,24 @@ const Application = db.define(
 			allowNull: false,
 			unique: true,
 		},
+
+		application_image4: {
+			type: sequelize.STRING,
+			allowNull: false,
+			unique: true,
+		},
+
+		application_image5: {
+			type: sequelize.STRING,
+			allowNull: false,
+			unique: true,
+		},
+
+		application_image6: {
+			type: sequelize.STRING,
+			allowNull: false,
+			unique: true,
+		},
 	},
 	{
 		sequelize,

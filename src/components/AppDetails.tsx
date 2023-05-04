@@ -3,8 +3,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import "./AppDetails.css";
-
-
+import { useGetAllApplicationsQuery } from '../api/applications.api';
 
 function ApplicationDetail({ 
     application_id,
@@ -17,6 +16,9 @@ function ApplicationDetail({
     application_image1,
     application_image2,
     application_image3,
+    application_image4,
+    application_image5,
+    application_image6,
   }: any) {
   return (
     <div key={application_id} className="app-detail-container">
@@ -61,7 +63,13 @@ function ApplicationDetail({
             <img className="appimage3" src={application_image1} alt={application_name} />
             <img className="appimage3" src={application_image2} alt={application_name} />
             <img className="appimage3" src={application_image3} alt={application_name} />
+            <img className="appimage3" src={application_image4} alt={application_name} />
+            <img className="appimage3" src={application_image5} alt={application_name} />
+            <img className="appimage3" src={application_image6} alt={application_name} />
           </div>
+          <Typography variant="h5" sx={{ marginTop: '50px' }}>
+            Similar Apps:
+          </Typography>
         </div>
       </div>
     </div>

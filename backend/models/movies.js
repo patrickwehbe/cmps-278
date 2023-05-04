@@ -73,7 +73,7 @@ const Movie = db.define(
 
 //Edit Column
 
-queryInterface.addColumn("movies", "movie_description", sequelize.STRING),
+//queryInterface.addColumn("movies", "movie_description", sequelize.STRING),
 	// 	queryInterface.addColumn("Movie", "birthDate", sequelize.STRING);
 	// queryInterface.addColumn("Movie", "phoneNumber", sequelize.STRING);
 

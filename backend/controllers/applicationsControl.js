@@ -32,6 +32,9 @@ const applicationControl = {
 				application_image1,
 				application_image2,
 				application_image3,
+				application_image4,
+				application_image5,
+				application_image6,
 			} = req.body;
 
 			const newApplication = await Application.create({
@@ -44,6 +47,9 @@ const applicationControl = {
 				application_image1: application_image1,
 				application_image2: application_image2,
 				application_image3: application_image3,
+				application_image4: application_image4,
+				application_image5: application_image5,
+				application_image6: application_image6,
 			});
 			return res.send(newApplication);
 		} catch (err) {
@@ -62,6 +68,9 @@ const applicationControl = {
 				application_image1,
 				application_image2,
 				application_image3,
+				application_image4,
+				application_image5,
+				application_image6,
 			} = req.body;
 
 			const verifyApplication = await Application.findOne({
@@ -79,6 +88,9 @@ const applicationControl = {
 						application_image1: application_image1,
 						application_image2: application_image2,
 						application_image3: application_image3,
+						application_image4: application_image4,
+						application_image5: application_image5,
+						application_image6: application_image6,
 					},
 					{
 						where: {
