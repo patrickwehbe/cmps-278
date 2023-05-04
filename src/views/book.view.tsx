@@ -72,12 +72,12 @@ function Book() {
 					  }) => (
 						<div className="book-card">
 							<Link
-								to={`/book/${book.book_id}`}
+								to={`/books/${book.book_id}`}
 								style={{
 									textDecoration: "none",
 									color: "inherit", // Adjust the color value as needed
 								}}
-							></Link>
+							>
 						  <BooksCardTemplate
 							book_id={book.book_id}
 							book_title={book.book_title}
@@ -86,7 +86,8 @@ function Book() {
 							book_author={book.book_author}
 							book_cover={book.book_cover}
 							book_preview={book.book_preview}
-						  />
+							
+						  /></Link>
 						</div>
 					  )
 					)}
@@ -106,12 +107,12 @@ function Book() {
 					  }) => (
 						<div className="book-card">
 								<Link
-								to={`/book/${book.book_id}`}
+								to={`/books/${book.book_id}`}
 								style={{
 									textDecoration: "none",
 									color: "inherit", // Adjust the color value as needed
 								}}
-							></Link>
+							>
 						  <BooksCardTemplate
 							book_id={book.book_id}
 							book_title={book.book_title}
@@ -120,7 +121,7 @@ function Book() {
 							book_author={book.book_author}
 							book_cover={book.book_cover}
 							book_preview={book.book_preview}
-						  />
+						  /></Link>
 						</div>
 					  )
 					)}
@@ -140,12 +141,12 @@ function Book() {
 					  }) => (
 						<div className="book-card">
 								<Link
-								to={`/book/${book.book_id}`}
+								to={`/books/${book.book_id}`}
 								style={{
 									textDecoration: "none",
 									color: "inherit", // Adjust the color value as needed
 								}}
-							></Link>
+							>
 						  <BooksCardTemplate
 							book_id={book.book_id}
 							book_title={book.book_title}
@@ -154,7 +155,7 @@ function Book() {
 							book_author={book.book_author}
 							book_cover={book.book_cover}
 							book_preview={book.book_preview}
-						  />
+						  /></Link>
 						</div>
 					  )
 					)}

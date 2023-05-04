@@ -6,6 +6,8 @@ import { useGetOneBookQuery } from "../api/books.api";
 import { useGetAllBooksQuery } from "../api/books.api";
 import BookCardTemplate from "../components/BooksCardTemplate";
 import { Link } from "react-router-dom";
+import { useGetAllUsersQuery } from '../api/user.api';
+
 
 function BookDetailPage() {
 	const { id } = useParams<{ id: string }>();
@@ -15,7 +17,7 @@ function BookDetailPage() {
 		refetchOnMountOrArgChange: true,
 	});
 
-	const similarApps =
+	const similarBooks =
 		all && data
 			? all.filter(
 					(app: any) =>
@@ -29,12 +31,7 @@ function BookDetailPage() {
 	return (
 		<div>
 			<BookDetail
-				book_image1={data.book_image1}
-				book_image2={data.book_image2}
-				book_image3={data.book_image3}
-				book_image4={data.book_image4}
-				book_image5={data.book_image5}
-				book_image6={data.book_image6}
+
 				book_author={data.book_author}
 				book_trailer={data.book_trailer}
 				book_price={data.book_price}
@@ -45,7 +42,7 @@ function BookDetailPage() {
 			/>
 
 			<div className="book2">
-				{similarApps.map(
+				{similarBooks.map(
 					(book: {
 						book_id: any;
 						book_name: any;
