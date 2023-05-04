@@ -15,7 +15,7 @@ export const bookApi = createApi({
 
 		// GET one value start region
 		getOneBook: build.query({
-			query: (id) => `/${id}`,
+			query: (id) => `/one/${id}`,
 		}),
 		// GET one value end region
 
