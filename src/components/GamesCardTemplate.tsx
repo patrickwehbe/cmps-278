@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -20,6 +19,9 @@ export default function GameCardTemplate({
       <CardActionArea>
         <CardMedia
           component="iframe"
+          title="Game Trailer"
+          height="200"
+          width="100%"
           src={game_trailer}
         />
         <CardContent>
