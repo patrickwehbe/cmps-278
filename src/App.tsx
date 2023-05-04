@@ -7,6 +7,7 @@ import Application from "./views/application.view";
 import Movie from "./views/movie.view";
 import Login from "./views/Login";
 import ApplicationDetailPage from "./views/ApplicationDetailPage";
+import Game from "./views/game.view";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 					<Route path="/applications" element={<Application />} />
 					<Route path="/movie" element={<Movie />} />
           <Route path="/details/:id" element={<ApplicationDetailPage />} />
+          <Route path="/games" element={<Game />} />
 				</Routes>
 			</Router>
 		</div>

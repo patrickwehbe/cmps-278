@@ -1,5 +1,4 @@
 import React from "react";
-import "./Game.css";
 import { useGetAllGamesQuery } from "../api/games.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
