@@ -1,0 +1,47 @@
+/* bookDetails.css */
+
+.book-detail-container {
+    padding: 100px;
+  }
+  
+
+  
+  .name-rating-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .book-title {
+    font-size: 4rem;
+    font-family: 'Roboto', sans-serif;
+    margin-right: 20px;
+  }
+  
+  .rating-wrapper {
+    margin-top: 30px; /* Adjust this value to set the desired distance between the rating and the booklication name */
+  }
+  
+  .bookimage2 {
+    width: 200px;
+    height: 200px;
+    margin-left: 20px;
+    margin-top: 50px;
+    border-radius: 40px;
+    position: absolute;
+    right: 100px;
+  }
+
+  .images-container {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent images from wrbooking to the next line */
+    overflow-x: auto; /* Add horizontal scrollbar if images exceed container width */
+    margin-top: 30px;
+
+  }
+  
+  .bookimage3 {
+    margin-right: 20px;
+    border-radius: 10px;
+  }
+  
+  
