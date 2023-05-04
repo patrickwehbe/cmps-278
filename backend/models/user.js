@@ -42,6 +42,9 @@ const User = db.define(
 		phoneNumber: {
 			type: sequelize.STRING,
 		},
+		user_image: {
+			type: sequelize.STRING,
+		},
 	},
 	{
 		sequelize,
@@ -66,7 +69,7 @@ const User = db.define(
 
 //Edit Column
 
-// queryInterface.addColumn("user", "gender", sequelize.STRING),
+// queryInterface.addColumn("user", "user_image", sequelize.STRING),
 // 	queryInterface.addColumn("user", "birthDate", sequelize.STRING);
 // queryInterface.addColumn("user", "phoneNumber", sequelize.STRING);
 
