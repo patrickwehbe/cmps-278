@@ -10,6 +10,7 @@ import ApplicationDetailPage from "./views/ApplicationDetailPage";
 import Game from "./views/game.view";
 import Header from "./components/Header";
 import Book from "./views/book.view";
+import BookDetailPage from "./views/BookDetailPage";
 
 function App() {
 	return (
@@ -25,9 +26,10 @@ function App() {
 					<Route path="/value" element={<Value />} />
 					<Route path="/applications" element={<Application />} />
 					<Route path="/movies" element={<Movie />} />
-					<Route path="/details/:id" element={<ApplicationDetailPage />} />
+					<Route path="/applications/:id" element={<ApplicationDetailPage />} />
 					<Route path="/games" element={<Game />} />
-					<Route path="/books" element={<Book />} />[]
+					<Route path="/books" element={<Book />} />
+					<Route path="/books/:id" element={<BookDetailPage />} />
 				</Routes>
 			</Router>
 		</div>
