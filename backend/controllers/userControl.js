@@ -2,7 +2,6 @@ const User = require("../models/user");
 // const bcrypt = require("bcrypt-nodejs");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
-const sequelize = require("sequelize");
 const nodemailer = require("nodemailer");
 
 let refreshTokens = [];
@@ -250,6 +249,7 @@ const userControl = {
 					gender: req.body.gender,
 					birthDate: req.body.birthDate,
 					phoneNumber: req.body.phoneNumber,
+					user_image: req.body.user_image,
 				},
 				{
 					where: {
@@ -294,22 +294,20 @@ const userControl = {
 			const token = createForgetToken({ id: user.user_id });
 
 			const transporter = nodemailer.createTransport({
-				host: "nitchd.com",
+				host: "google.com",
 				port: 465,
 				secure: true,
 				logger: true,
 				debug: true,
 				ignoreTLS: true,
 				auth: {
-					// user: "nitchd2021@gmail.com",
-					// pass: "nitchd2021@2020",
-					user: "support@nitchd.com",
-					pass: "ePVjM}&5(FGJ",
+					user: "patrickwehbe3@gmail.com",
+					pass: "P71644pc1pc2!@",
 				},
 			});
 
 			let mailOptions = {
-				from: "support@nitchd.com",
+				from: "patrickwehbe3@gmail.com",
 				to: email,
 				subject: "Reset your account password",
 				text: `Hi ${user.user_username}, You've received a request to reset the password of your Nitchd account. Kindly Press on the link below http://localhost:7000/user/forgetpassword/${user.user_id}/${token}`,

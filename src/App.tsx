@@ -11,6 +11,13 @@ import Game from "./views/game.view";
 import Header from "./components/Header";
 import Book from "./views/book.view";
 import BookDetailPage from "./views/BookDetailPage";
+import AdminView from "./views/admin.view";
+import MoviesTable from "./components/MoviesTable";
+import BooksTable from "./components/BooksTable";
+import ApplicationsTable from "./components/ApplicationsTable";
+import GamesTable from "./components/GamesTable";
+import UsersTable from "./components/UsersTable";
+import Footer from "./components/Footer";
 
 function App() {
 	return (
@@ -23,6 +30,12 @@ function App() {
 				/>
 				<Routes>
 					<Route path="/" element={<Login />} />
+					<Route path="/admin" element={<AdminView />} />
+					<Route path="/admin/users" element={<UsersTable />} />
+					<Route path="/admin/games" element={<GamesTable />} />
+					<Route path="/admin/applications" element={<ApplicationsTable />} />
+					<Route path="/admin/books" element={<BooksTable />} />
+					<Route path="/admin/movies" element={<MoviesTable />} />
 					<Route path="/value" element={<Value />} />
 					<Route path="/applications" element={<Application />} />
 					<Route path="/movies" element={<Movie />} />
@@ -31,6 +44,7 @@ function App() {
 					<Route path="/books" element={<Book />} />
 					<Route path="/books/:id" element={<BookDetailPage />} />
 				</Routes>
+				<Footer />
 			</Router>
 		</div>
 	);
