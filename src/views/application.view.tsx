@@ -120,7 +120,7 @@ function Application() {
 					}) => (
 						<div className="application-card">
 							<Link
-								to={`/details/${application.application_id}`}
+								to={`/applications/${application.application_id}`}
 								style={{
 									textDecoration: "none",
 									color: "inherit", // Adjust the color value as needed
@@ -155,7 +155,7 @@ function Application() {
 					}) => (
 						<div className="application-card">
 							<Link
-								to={`/details/${application.application_id}`}
+								to={`/applications/${application.application_id}`}
 								style={{
 									textDecoration: "none",
 									color: "inherit", // Adjust the color value as needed
@@ -190,7 +190,7 @@ function Application() {
 					}) => (
 						<div className="application-card">
 							<Link
-								to={`/details/${application.application_id}`}
+								to={`/applications/${application.application_id}`}
 								style={{
 									textDecoration: "none",
 									color: "inherit", // Adjust the color value as needed

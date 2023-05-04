@@ -20,7 +20,7 @@ export default function MovieCardTemplate2({
 			<CardActionArea>
 				<CardMedia
 					component="img"
-					height="140"
+					height="240"
 					image={movie_image}
 					alt={movie_name}
 					style={{
