@@ -30,6 +30,7 @@ const movieControl = {
 				movie_director,
 				movie_rating,
 				date_released,
+				movie_category,
 			} = req.body;
 
 			const newMovie = await Movie.create({
@@ -39,6 +40,7 @@ const movieControl = {
 				movie_director: movie_director,
 				movie_rating: movie_rating,
 				date_released: date_released,
+				movie_category,
 			});
 			return res.send(newMovie);
 		} catch (err) {
@@ -54,6 +56,7 @@ const movieControl = {
 				movie_director,
 				movie_rating,
 				date_released,
+				movie_category,
 			} = req.body;
 
 			const verifyMovie = await Movie.findOne({
@@ -68,6 +71,7 @@ const movieControl = {
 						movie_director: movie_director,
 						movie_rating: movie_rating,
 						date_released: date_released,
+						movie_category,
 					},
 					{
 						where: {

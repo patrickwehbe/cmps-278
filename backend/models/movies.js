@@ -37,6 +37,9 @@ const Movie = db.define(
 			type: sequelize.DATE,
 			allowNull: false,
 		},
+		movie_category: {
+			type: sequelize.STRING,
+		},
 	},
 	{
 		sequelize,
@@ -61,7 +64,8 @@ const Movie = db.define(
 
 //Edit Column
 
-// queryInterface.addColumn("Movie", "gender", sequelize.STRING),
+
+// queryInterface.addColumn("movies", "movie_category", sequelize.STRING),
 // 	queryInterface.addColumn("Movie", "birthDate", sequelize.STRING);
 // queryInterface.addColumn("Movie", "phoneNumber", sequelize.STRING);
 

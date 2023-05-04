@@ -13,7 +13,10 @@ const applicationControl = {
 	},
 	getOneApplication: async (req, res) => {
 		try {
-			const application = await Application.findByPk(req.params.id);
+			const application = await Application.findOne({
+				application_id: req.params.id,
+			});
+
 			return res.send(application);
 		} catch (err) {
 			return res.status(500).send(err.message);

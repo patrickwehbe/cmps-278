@@ -1,7 +1,10 @@
 // src/components/ApplicationDetail.tsx
+
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import "./AppDetails.css";
+
+
 
 function ApplicationDetail({ 
     application_id,
@@ -64,4 +67,5 @@ function ApplicationDetail({
     </div>
   );
 }
+
 export default ApplicationDetail;
