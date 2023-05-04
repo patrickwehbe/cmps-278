@@ -1,35 +1,4 @@
 // src/containers/ApplicationDetailPage.tsx
-<<<<<<< HEAD
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import ApplicationDetail from '../components/AppDetails';
-import { useGetOneApplicationQuery } from '../api/applications.api';
-import { useGetAllApplicationsQuery } from '../api/applications.api';
-import ApplicationCardTemplate2 from '../components/ApplicationCardTemplate2';
-import { Link } from 'react-router-dom';
-import {useGetAllAppReviewsQuery} from '../api/appreview.api';
-import AppReview from '../components/AppReview';
-import {useGetUsersQuery} from '../api/user.api';
-
-function ApplicationDetailPage() {
-  const { id } = useParams<{ id: string }>();
-  const { data: data, isLoading } = useGetOneApplicationQuery(id);
-  const { data: all } = useGetAllApplicationsQuery({
-    pollingInterval: 0,
-    refetchOnMountOrArgChange: true,
-  });
-  const { data: reviews } = useGetAllAppReviewsQuery({
-    pollingInterval: 0,
-    refetchOnMountOrArgChange: true,
-  });
-  console.log(reviews);
-
-  const { data: users } = useGetUsersQuery(undefined, {
-    pollingInterval: 0,
-    refetchOnMountOrArgChange: true,
-  });
-  console.log(users);
-=======
 import React from "react";
 import { useParams } from "react-router-dom";
 import ApplicationDetail from "../components/AppDetails";
@@ -37,6 +6,9 @@ import { useGetOneApplicationQuery } from "../api/applications.api";
 import { useGetAllApplicationsQuery } from "../api/applications.api";
 import ApplicationCardTemplate2 from "../components/ApplicationCardTemplate2";
 import { Link } from "react-router-dom";
+import { useGetAllAppReviewsQuery } from "../api/appreview.api";
+import AppReview from "../components/AppReview";
+import { useGetAllUsersQuery } from "../api/user.api";
 
 function ApplicationDetailPage() {
 	const { id } = useParams<{ id: string }>();
@@ -45,7 +17,17 @@ function ApplicationDetailPage() {
 		pollingInterval: 0,
 		refetchOnMountOrArgChange: true,
 	});
->>>>>>> b880df3bbf98a3819e443a58d07ab7fcffe3bdf6
+	const { data: reviews } = useGetAllAppReviewsQuery({
+		pollingInterval: 0,
+		refetchOnMountOrArgChange: true,
+	});
+	console.log(reviews);
+
+	const { data: users } = useGetAllUsersQuery(undefined, {
+		pollingInterval: 0,
+		refetchOnMountOrArgChange: true,
+	});
+	console.log(users);
 
 	const similarApps =
 		all && data
@@ -56,17 +38,14 @@ function ApplicationDetailPage() {
 			  )
 			: [];
 
-<<<<<<< HEAD
-    const filteredReviews = reviews && data
-    ? reviews.filter((review: any) => review.app_fid === data.application_id)
-    : [];
+	const filteredReviews =
+		reviews && data
+			? reviews.filter((review: any) => review.app_fid === data.application_id)
+			: [];
 
-  console.log(filteredReviews);
+	console.log(filteredReviews);
 
-  if (isLoading) return <div>Loading...</div>;
-=======
 	if (isLoading) return <div>Loading...</div>;
->>>>>>> b880df3bbf98a3819e443a58d07ab7fcffe3bdf6
 
 	return (
 		<div>
@@ -86,66 +65,6 @@ function ApplicationDetailPage() {
 				application_rating={data.application_rating}
 			/>
 
-<<<<<<< HEAD
-      <div className="application2">
-        {similarApps.map(
-          (application: {
-            application_id: any,
-            application_name: any,
-            application_image: any,
-            application_trailer: any,
-            application_rating: any,
-            application_price: any,
-            application_author: any,
-          }) => (
-            <div className="application-card">
-              <Link
-                to={`/details/${application.application_id}`}
-                style={{
-                  textDecoration: 'none',
-                  color: 'inherit',
-                }}
-              >
-                <ApplicationCardTemplate2
-                  application_id={application.application_id}
-                  application_name={application.application_name}
-                  application_rating={application.application_rating}
-                  application_price={application.application_price}
-                  application_author={application.application_author}
-                  application_image={application.application_image}
-                  application_trailer={application.application_trailer}
-                />
-              </Link>
-            </div>
-          )
-        )}
-      </div>
-
-      <div className="appreview">
-        {filteredReviews.map(
-          (review: {
-            app_review_id: any,
-            num_of_likes: any,
-            content: any,
-            review_rating: any,
-            user_image: any,
-            user_username: any,
-          }) => (
-            <div className="application-card">
-                <AppReview
-                  app_review_id={review.app_review_id}
-                  num_of_likes={review.num_of_likes}
-                  content={review.content}
-                  review_rating={review.review_rating}
-         
-                />
-            </div>
-          )
-        )}
-      </div>
-    </div>
-  );
-=======
 			<div className="application2">
 				{similarApps.map(
 					(application: {
@@ -181,7 +100,6 @@ function ApplicationDetailPage() {
 			</div>
 		</div>
 	);
->>>>>>> b880df3bbf98a3819e443a58d07ab7fcffe3bdf6
 }
 
 export default ApplicationDetailPage;
