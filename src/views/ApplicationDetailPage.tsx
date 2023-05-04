@@ -6,9 +6,9 @@ import { useGetOneApplicationQuery } from '../api/applications.api';
 import { useGetAllApplicationsQuery } from '../api/applications.api';
 import ApplicationCardTemplate2 from '../components/ApplicationCardTemplate2';
 import { Link } from 'react-router-dom';
-import {useGetAllAppReviewsQuery} from '../api/appreview.api';
+import { useGetAllAppReviewsQuery } from '../api/appreview.api';
 import AppReview from '../components/AppReview';
-import {useGetAllUsersQuery} from '../api/user.api';
+import { useGetAllUsersQuery } from '../api/user.api';
 
 function ApplicationDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -37,7 +37,7 @@ function ApplicationDetailPage() {
       )
     : [];
 
-    const filteredReviews = reviews && data
+  const filteredReviews = reviews && data
     ? reviews.filter((review: any) => review.app_fid === data.application_id)
     : [];
 
@@ -98,29 +98,38 @@ function ApplicationDetailPage() {
       </div>
 
       <div className="appreview">
-        {filteredReviews.map(
-          (review: {
-            app_review_id: any,
-            num_of_likes: any,
-            content: any,
-            review_rating: any,
-            user_image: any,
-            user_username: any,
-          }) => (
-            <div className="application-card">
+        {filteredReviews.map((review: {
+          app_review_id: any,
+          num_of_likes: any,
+          content: any,
+          review_rating: any,
+          user_fid: any, // Add user_fid to the review object
+
+        }) => {
+            // Find the user object based on the review's user_fid
+            const user = users.find((u: any) => u.user_id === review.user_fid);
+  
+            // Check if the user object exists
+            const user_image = user ? user.user_image : '';
+            const user_username = user ? user.user_username : '';
+  
+            return (
+              <div className="application-card">
                 <AppReview
                   app_review_id={review.app_review_id}
                   num_of_likes={review.num_of_likes}
                   content={review.content}
                   review_rating={review.review_rating}
-         
+                  user_image={user_image}
+                  user_username={user_username}
                 />
-            </div>
-          )
-        )}
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  );
-}
-
-export default ApplicationDetailPage;
+    );
+  }
+  
+  export default ApplicationDetailPage;
+  
