@@ -158,9 +158,7 @@ const userControl = {
 	},
 	getUserById: async (req, res) => {
 		try {
-			const user = await User.findOne({
-				where: { user_id: req.query.user_id },
-			});
+			const user = await User.findByPk(req.params.id);
 			if (user) {
 				return res.send(user);
 			} else {

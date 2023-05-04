@@ -10,7 +10,7 @@ router.post("/refresh_token", userControl.refreshToken);
 router.get("/info", auth, userControl.getUser);
 router.get("/all", userControl.getAllUsers);
 
-router.get("/userinfo", userControl.getUserById);
+router.get("/one/:id", userControl.getUserById);
 
 router.put("/profile/changepassword/:id", userControl.changeUserPassword);
 router.put("/profile/changeuserinfo/:id", userControl.changeUserInfo);

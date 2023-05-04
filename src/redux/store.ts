@@ -5,6 +5,7 @@ import { applicationApi } from "../api/applications.api";
 import { bookApi } from "../api/books.api";
 import { gameApi } from "../api/games.api";
 import { movieApi } from "../api/movie.api";
+import { appreviewApi } from "../api/appreview.api"; // Import appreviewApi
 
 export const store = configureStore({
 	reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
 		[bookApi.reducerPath]: bookApi.reducer,
 		[gameApi.reducerPath]: gameApi.reducer,
 		[movieApi.reducerPath]: movieApi.reducer,
+		[appreviewApi.reducerPath]: appreviewApi.reducer, // Add appreviewApi.reducer
 	},
 	middleware: (gDM) =>
 		gDM().concat(
@@ -22,7 +24,8 @@ export const store = configureStore({
 			applicationApi.middleware,
 			bookApi.middleware,
 			gameApi.middleware,
-			movieApi.middleware
+			movieApi.middleware,
+			appreviewApi.middleware // Add appreviewApi.middleware
 		),
 });
 

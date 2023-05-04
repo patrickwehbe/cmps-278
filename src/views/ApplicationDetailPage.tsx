@@ -6,6 +6,9 @@ import { useGetOneApplicationQuery } from "../api/applications.api";
 import { useGetAllApplicationsQuery } from "../api/applications.api";
 import ApplicationCardTemplate2 from "../components/ApplicationCardTemplate2";
 import { Link } from "react-router-dom";
+import { useGetAllAppReviewsQuery } from "../api/appreview.api";
+import AppReview from "../components/AppReview";
+import { useGetAllUsersQuery } from "../api/user.api";
 
 function ApplicationDetailPage() {
 	const { id } = useParams<{ id: string }>();
@@ -14,6 +17,17 @@ function ApplicationDetailPage() {
 		pollingInterval: 0,
 		refetchOnMountOrArgChange: true,
 	});
+	const { data: reviews } = useGetAllAppReviewsQuery({
+		pollingInterval: 0,
+		refetchOnMountOrArgChange: true,
+	});
+	console.log(reviews);
+
+	const { data: users } = useGetAllUsersQuery(undefined, {
+		pollingInterval: 0,
+		refetchOnMountOrArgChange: true,
+	});
+	console.log(users);
 
 	const similarApps =
 		all && data
@@ -23,6 +37,13 @@ function ApplicationDetailPage() {
 						app.application_id !== data.application_id
 			  )
 			: [];
+
+	const filteredReviews =
+		reviews && data
+			? reviews.filter((review: any) => review.app_fid === data.application_id)
+			: [];
+
+	console.log(filteredReviews);
 
 	if (isLoading) return <div>Loading...</div>;
 
