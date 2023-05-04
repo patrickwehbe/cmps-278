@@ -6,7 +6,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4002" }),
   reducerPath: "org-service-api",
   endpoints: (build) => ({
-    getUsers: build.query<Response<User[]>, string>({
+    getUsers: build.query<Response<User[]>, void>({
       query: () => `user`,
     }),
   }),
