@@ -45,5 +45,6 @@ export const appreplyApi = createApi({
 
 export const {
   useGetAllAppRepliesQuery,
+  useAddAppReplyMutation,
   useGetOneAppReplyQuery,
 } = appreplyApi;

@@ -18,6 +18,7 @@ import {
 import Rating from "@mui/lab/Rating";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import "./AppReview.css";
+import { useAddAppReplyMutation } from "../api/appreply.api";
 
 export default function ApplicationCardTemplate2({
   app_review_id,
@@ -33,6 +34,7 @@ export default function ApplicationCardTemplate2({
   const [liked, setLiked] = useState(false);
   const [replyDialogOpen, setReplyDialogOpen] = useState(false);
   const [replyText, setReplyText] = useState("");
+  const [addAppReply, { isLoading }] = useAddAppReplyMutation();
 
   const handleLike = () => {
     if (liked) {
@@ -51,9 +53,23 @@ export default function ApplicationCardTemplate2({
     setReplyDialogOpen(false);
   };
 
-  const handleReplySubmit = () => {
+
+  const handleReplySubmit = async () => {
     console.log("Submitted reply:", replyText);
-    // Handle the reply submission here
+
+    // Generate a random user_fid between 1 and 3
+    const randomUserFid = Math.floor(Math.random() * 3) + 1;
+
+    // Create the AppReply object
+    const newAppReply = {
+      content: replyText,
+      user_fid: randomUserFid,
+      app_review_fid: app_review_id,
+    };
+
+    // Call the addAppReply mutation
+    await addAppReply(newAppReply);
+
     setReplyText("");
     handleReplyDialogClose();
   };

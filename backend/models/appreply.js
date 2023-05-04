@@ -2,16 +2,16 @@ const sequelize = require("sequelize");
 const db = require("../Database/dbConnection");
 const queryInterface = db.getQueryInterface();
 
-const AppReview = db.define(
+const AppReply = db.define(
 	"AppReply",
 	{
 		user_fid: {
 			type: sequelize.INTEGER,
-			allowNull: false,
+			allowNull: true,
 		},
 		app_fid: {
 			type: sequelize.INTEGER,
-			allowNull: false,
+			allowNull: true,
 		},
 
 		app_review_id: {
@@ -23,13 +23,13 @@ const AppReview = db.define(
 
 		num_of_likes: {
 			type: sequelize.INTEGER,
-			allowNull: false,
+			allowNull: true,
 			unique: true,
 		},
 
 		content: {
 			type: sequelize.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		app_review_id: {
 			type: sequelize.INTEGER,

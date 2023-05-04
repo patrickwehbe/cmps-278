@@ -22,14 +22,12 @@ const appreplyControl = {
       const {
         user_fid,
         app_review_fid,
-        app_reply_id,
         content,
       } = req.body;
 
       const newReply = await AppReply.create({
         user_fid,
         app_review_fid,
-        app_reply_id,
         content,
       });
 
