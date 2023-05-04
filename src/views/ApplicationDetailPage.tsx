@@ -100,37 +100,38 @@ function ApplicationDetailPage() {
 			</div>
 
 			<div className="appreview">
-				{filteredReviews.map(
-					(review: {
-						app_review_id: any;
-						num_of_likes: any;
-						content: any;
-						review_rating: any;
-						user_fid: any; // Add user_fid to the review object
-					}) => {
-						// Find the user object based on the review's user_fid
-						const user = users.find(
-							(u: any) => u.user_id === review.user_fid
-						);
+				{users &&
+					filteredReviews.map(
+						(review: {
+							app_review_id: any;
+							num_of_likes: any;
+							content: any;
+							review_rating: any;
+							user_fid: any; // Add user_fid to the review object
+						}) => {
+							// Find the user object based on the review's user_fid
+							const user = users.find(
+								(u: any) => u.user_id === review.user_fid
+							);
 
-						// Check if the user object exists
-						const user_image = user ? user.user_image : "";
-						const user_username = user ? user.user_username : "";
+							// Check if the user object exists
+							const user_image = user ? user.user_image : "";
+							const user_username = user ? user.user_username : "";
 
-						return (
-							<div className="application-card">
-								<AppReview
-									app_review_id={review.app_review_id}
-									num_of_likes={review.num_of_likes}
-									content={review.content}
-									review_rating={review.review_rating}
-									user_image={user_image}
-									user_username={user_username}
-								/>
-							</div>
-						);
-					}
-				)}
+							return (
+								<div className="application-card">
+									<AppReview
+										app_review_id={review.app_review_id}
+										num_of_likes={review.num_of_likes}
+										content={review.content}
+										review_rating={review.review_rating}
+										user_image={user_image}
+										user_username={user_username}
+									/>
+								</div>
+							);
+						}
+					)}
 			</div>
 		</div>
 	);
