@@ -1,11 +1,11 @@
-const game = require("../models/games");
+const Game = require("../models/games");
 // const bcrypt = require("bcrypt-nodejs");
 
 let refreshTokens = [];
 const gameControl = {
 	getGames: async (req, res) => {
 		try {
-			const game = await game.findAll();
+			const game = await Game.findAll();
 			return res.send(game);
 		} catch (err) {
 			return res.status(500).json({ msg: "error from the server side" });

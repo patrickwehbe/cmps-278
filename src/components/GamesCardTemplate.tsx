@@ -19,10 +19,8 @@ export default function GameCardTemplate({
     <Card sx={{ maxWidth: 345 }} key={game_id}>
       <CardActionArea>
         <CardMedia
-          component="img"
-          height="140"
-          image={game_image}
-          alt={game_name}
+          component="iframe"
+          src={game_trailer}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

@@ -23,6 +23,7 @@ function ApplicationDetail({
       <div className="header-container">
         <div className="name-rating-container">
           <h1 className="app-title">{application_name}</h1>
+          <img className="appimage2" src={application_image} alt={application_name} />
           <Box className="rating-wrapper" display="flex">
             <Typography variant="body2" color="text.secondary" className="app-rating">
               {application_rating}
@@ -62,7 +63,6 @@ function ApplicationDetail({
             <img className="appimage3" src={application_image3} alt={application_name} />
           </div>
         </div>
-        <img className="appimage2" src={application_image} alt={application_name} />
       </div>
     </div>
   );
