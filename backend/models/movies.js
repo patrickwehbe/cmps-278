@@ -40,6 +40,12 @@ const Movie = db.define(
 		movie_category: {
 			type: sequelize.STRING,
 		},
+		movie_trailer: {
+			type: sequelize.STRING,
+		},
+		movie_cast: {
+			type: sequelize.STRING,
+		},
 	},
 	{
 		sequelize,
@@ -64,8 +70,7 @@ const Movie = db.define(
 
 //Edit Column
 
-
-// queryInterface.addColumn("movies", "movie_category", sequelize.STRING),
+// queryInterface.addColumn("movies", "", sequelize.STRING),
 // 	queryInterface.addColumn("Movie", "birthDate", sequelize.STRING);
 // queryInterface.addColumn("Movie", "phoneNumber", sequelize.STRING);
 
