@@ -1,0 +1,38 @@
+.movie {
+	display: flex;
+	overflow-x: auto;
+	margin-left: 70px;
+	margin-top: 100px;
+	margin-right: 40px;
+}
+
+.movie2 {
+	display: flex;
+	overflow-x: auto;
+	margin-left: 70px;
+	white-space: nowrap;
+	margin-right: 40px;
+}
+
+.movie-card {
+	flex-shrink: 0; /* Add this */
+	margin-right: 20px; /* Adjust the value as needed */
+}
+
+.movie-column {
+	display: flex;
+	flex-direction: column;
+	margin-right: 100px;
+}
+
+.movie-card-wrapper {
+	margin-bottom: 16px;
+}
+
+.recommendedtext {
+	margin-left: 80px;
+	font-family: "Roboto", sans-serif;
+	font-size: 24px;
+	font-weight: 700;
+	color: #333;
+}

@@ -34,10 +34,13 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 	};
 
 	return (
-		<AppBar position="static" sx={{ bgcolor: "#fff", color: "#000" }}>
+		<AppBar
+			position="static"
+			sx={{ bgcolor: "#fff", color: "#000", marginBottom: "10vh" }}
+		>
 			<Toolbar sx={{ justifyContent: "space-between" }}>
 				<Box display="flex" alignItems="center">
-					<GoogleLogo />
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu1PJmT_THldF0n5APcmt9p10utgu6KSw4cH2fQ5Xhpw&s" />
 					<StyledTabs
 						value={false}
 						onChange={handleTabChange}
@@ -88,16 +91,6 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 		</AppBar>
 	);
 };
-
-const GoogleLogo: React.FC = () => <SvgIcon component={GoogleIcon} sx={{ mr: 1 }} />;
-
-const GoogleIcon: OverridableComponent<SvgIconTypeMap<{}, "svg">> = styled("svg")(
-	({ theme }) => ({
-		width: "24px",
-		height: "24px",
-		fill: theme.palette.primary.main,
-	})
-);
 
 const StyledTabs = styled(Tabs)({
 	"& .MuiTab-root": {
