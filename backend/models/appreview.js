@@ -18,7 +18,7 @@ const AppReview = db.define(
 			type: sequelize.INTEGER,
 			allowNull: false,
 			unique: true,
-            primaryKey: true,
+			primaryKey: true,
 		},
 
 		num_of_likes: {
@@ -51,11 +51,10 @@ const AppReview = db.define(
 	}
 );
 
-
 // Drop table if the Schema changed
 
 // db.sync().then(() => {
-// 	Application.sync({ force: true });
+// 	AppReviewx.sync({ force: true });
 // });
 
 //Edit Column
