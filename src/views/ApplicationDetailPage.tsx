@@ -76,7 +76,7 @@ function ApplicationDetailPage() {
           }) => (
             <div className="application-card">
               <Link
-                to={`/details/${application.application_id}`}
+                to={`/applications/${application.application_id}`}
                 style={{
                   textDecoration: 'none',
                   color: 'inherit',
@@ -110,8 +110,9 @@ function ApplicationDetailPage() {
             const user = users.find((u: any) => u.user_id === review.user_fid);
   
             // Check if the user object exists
-            const user_image = user ? user.user_image : '';
-            const user_username = user ? user.user_username : '';
+            const user_image = user.user_image;
+            const user_username = user.user_username;
+            console.log(user_image);
   
             return (
               <div className="application-card">
