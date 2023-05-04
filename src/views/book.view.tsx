@@ -4,6 +4,7 @@ import BooksCardTemplate from "../components/BooksCardTemplate";
 import { useGetAllBooksQuery } from "../api/books.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
+import { Link } from "react-router-dom";
 
 function Book() {
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -70,6 +71,13 @@ function Book() {
 						book_author: any,
 					  }) => (
 						<div className="book-card">
+							<Link
+								to={`/book/${book.book_id}`}
+								style={{
+									textDecoration: "none",
+									color: "inherit", // Adjust the color value as needed
+								}}
+							></Link>
 						  <BooksCardTemplate
 							book_id={book.book_id}
 							book_title={book.book_title}
@@ -97,6 +105,13 @@ function Book() {
 						book_author: any,
 					  }) => (
 						<div className="book-card">
+								<Link
+								to={`/book/${book.book_id}`}
+								style={{
+									textDecoration: "none",
+									color: "inherit", // Adjust the color value as needed
+								}}
+							></Link>
 						  <BooksCardTemplate
 							book_id={book.book_id}
 							book_title={book.book_title}
@@ -124,6 +139,13 @@ function Book() {
 						book_author: any,
 					  }) => (
 						<div className="book-card">
+								<Link
+								to={`/book/${book.book_id}`}
+								style={{
+									textDecoration: "none",
+									color: "inherit", // Adjust the color value as needed
+								}}
+							></Link>
 						  <BooksCardTemplate
 							book_id={book.book_id}
 							book_title={book.book_title}

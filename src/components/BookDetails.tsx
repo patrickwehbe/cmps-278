@@ -68,7 +68,7 @@ function bookDetail({
             <img className="bookimage3" src={book_image6} alt={book_name} />
           </div>
           <Typography variant="h5" sx={{ marginTop: '50px' }}>
-            Similar Apps:
+            Similar Books:
           </Typography>
         </div>
       </div>
