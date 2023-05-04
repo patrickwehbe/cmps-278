@@ -15,6 +15,9 @@ const Movie = db.define(
 			type: sequelize.STRING,
 			allowNull: false,
 		},
+		movie_description: {
+			type: sequelize.STRING,
+		},
 		movie_image: {
 			type: sequelize.STRING,
 			allowNull: false,
@@ -70,8 +73,8 @@ const Movie = db.define(
 
 //Edit Column
 
-// queryInterface.addColumn("movies", "", sequelize.STRING),
-// 	queryInterface.addColumn("Movie", "birthDate", sequelize.STRING);
-// queryInterface.addColumn("Movie", "phoneNumber", sequelize.STRING);
+queryInterface.addColumn("movies", "movie_description", sequelize.STRING),
+	// 	queryInterface.addColumn("Movie", "birthDate", sequelize.STRING);
+	// queryInterface.addColumn("Movie", "phoneNumber", sequelize.STRING);
 
-module.exports = Movie;
+	(module.exports = Movie);
