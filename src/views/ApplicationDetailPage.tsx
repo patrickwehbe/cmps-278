@@ -8,7 +8,7 @@ import ApplicationCardTemplate2 from '../components/ApplicationCardTemplate2';
 import { Link } from 'react-router-dom';
 import {useGetAllAppReviewsQuery} from '../api/appreview.api';
 import AppReview from '../components/AppReview';
-import {useGetUsersQuery} from '../api/user.api';
+import {useGetAllUsersQuery} from '../api/user.api';
 
 function ApplicationDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +23,7 @@ function ApplicationDetailPage() {
   });
   console.log(reviews);
 
-  const { data: users } = useGetUsersQuery(undefined, {
+  const { data: users } = useGetAllUsersQuery(undefined, {
     pollingInterval: 0,
     refetchOnMountOrArgChange: true,
   });
