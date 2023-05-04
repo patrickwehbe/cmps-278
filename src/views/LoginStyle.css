@@ -1,10 +1,10 @@
-/*@import url("https://fonts.googleapis.com/css2?family=Poppins");
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
 
 .container * {
 	box-sizing: border-box;
 }
 
-.container body {
+.login .container {
 	display: flex;
 	background-color: white;
 	justify-content: center;
@@ -308,4 +308,3 @@
 .social-container a:hover {
 	border: 1px solid #4bb6b7;
 }
-*/
