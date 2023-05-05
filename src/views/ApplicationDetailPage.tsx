@@ -10,6 +10,10 @@ import { useGetAllAppReviewsQuery } from '../api/appreview.api';
 import AppReview from '../components/AppReview';
 import { useGetAllUsersQuery } from '../api/user.api';
 import "./AppDetails.css";
+import LinearProgress from "@mui/material/LinearProgress";
+import Box from '@mui/material/Box';
+
+
 
 function ApplicationDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -43,6 +47,79 @@ function ApplicationDetailPage() {
     : [];
 
   console.log(filteredReviews);
+
+  const calculateAverageRating = () => {
+    if (filteredReviews.length === 0) {
+      return 0;
+    }
+  
+    const sumRatings = filteredReviews.reduce((sum:any, review:any) => sum + review.review_rating, 0);
+    return sumRatings / filteredReviews.length;
+  };
+
+  const averageRating = calculateAverageRating();
+
+  
+
+  const calculateRatingPercentages = () => {
+    const ratingCounts = [0, 0, 0, 0, 0];
+  
+    filteredReviews.forEach((review:any) => {
+      ratingCounts[review.review_rating - 1]++;
+    });
+  
+    const totalRatings = filteredReviews.length;
+    const percentages = ratingCounts.map(
+      (count) => (totalRatings === 0 ? 0 : (count / totalRatings) * 100)
+    );
+  
+    return percentages;
+  };
+  
+
+  const renderRatingBars = () => {
+    const ratingPercentages = calculateRatingPercentages();
+  
+    return ratingPercentages.map((percentage, index) => (
+      <Box
+        key={index}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          marginBottom: 1,
+          marginLeft: "7%",
+          marginRight: "7%",
+          width: "50%",
+        }}
+      >
+        <Box
+          sx={{
+            marginRight: 1,
+          }}
+        >
+          {index + 1}
+        </Box>
+        <LinearProgress
+          variant="determinate"
+          value={percentage}
+          sx={{
+            flexGrow: 1,
+            marginRight: 1,
+          }}
+        />
+        <Box
+          sx={{
+            marginLeft: 1,
+          }}
+        >
+        </Box>
+      </Box>
+    ));
+  };
+  
+  
+  
+  
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -99,6 +176,8 @@ function ApplicationDetailPage() {
       </div>
 
       <div className="appreview">
+        <h2 style = {{marginLeft:"7%"}}>Average rating based on recent reviews: {averageRating.toFixed(1)}</h2>
+        {renderRatingBars()}
         {filteredReviews.map((review: {
           app_review_id: any,
           num_of_likes: any,
