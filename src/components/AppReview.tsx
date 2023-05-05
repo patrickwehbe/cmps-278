@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import {
   Avatar,
   Box,
-  CardActionArea,
   Stack,
   IconButton,
   Button,
@@ -18,9 +17,12 @@ import {
 import Rating from "@mui/lab/Rating";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import "./AppReview.css";
-import { useAddAppReplyMutation } from "../api/appreply.api";
+import { useAddAppReplyMutation, useGetAllAppRepliesQuery } from "../api/appreply.api";
+import { any } from "prop-types";
+import { useGetAllUsersQuery } from "../api/user.api";
 
-export default function ApplicationCardTemplate2({
+
+export default function AppReview({
   app_review_id,
   user_fid,
   app_fid,
@@ -34,7 +36,27 @@ export default function ApplicationCardTemplate2({
   const [liked, setLiked] = useState(false);
   const [replyDialogOpen, setReplyDialogOpen] = useState(false);
   const [replyText, setReplyText] = useState("");
-  const [addAppReply, { isLoading }] = useAddAppReplyMutation();
+  const { data: allReplies } = useGetAllAppRepliesQuery({});
+  const replies = allReplies?.filter((reply: any) => reply.app_review_fid === app_review_id) || [];
+  const [addAppReply] = useAddAppReplyMutation();
+  const [showReplies, setShowReplies] = useState(false);
+  const [replyList, setReplyList] = useState(replies);
+
+  useEffect(() => {
+    setReplyList(replies);
+    }, [replies, addAppReply, replyList]);
+
+
+  const { data: allUsers } = useGetAllUsersQuery({});
+
+  const findUser = (userFid: number) => {
+    return allUsers?.find((user: any) => user.user_id === userFid) || null;
+  };
+
+  const toggleReplies = () => {
+    setShowReplies(!showReplies);
+  };
+
 
   const handleLike = () => {
     if (liked) {
@@ -53,26 +75,24 @@ export default function ApplicationCardTemplate2({
     setReplyDialogOpen(false);
   };
 
-
   const handleReplySubmit = async () => {
     console.log("Submitted reply:", replyText);
 
-    // Generate a random user_fid between 1 and 3
-    const randomUserFid = Math.floor(Math.random() * 3) + 1;
+    const randomUserFid = Math.floor(Math.random() * 6) + 1;
 
-    // Create the AppReply object
     const newAppReply = {
       content: replyText,
       user_fid: randomUserFid,
       app_review_fid: app_review_id,
     };
 
-    // Call the addAppReply mutation
     await addAppReply(newAppReply);
 
+    setReplyList([...replyList, newAppReply]);
     setReplyText("");
     handleReplyDialogClose();
   };
+  console.log(replies);
 
   return (
     <Card sx={{ maxWidth: 1000, boxShadow: "none" }} key={app_review_id}>
@@ -136,7 +156,41 @@ export default function ApplicationCardTemplate2({
             </Box>
           </div>
         </Stack>
-      </CardContent>
+        </CardContent>
+
+<Button
+  onClick={toggleReplies}
+  color="primary"
+  sx={{ marginLeft: "10%", marginBottom: "16px" }}
+>
+  {showReplies ? "Hide Replies" : "Show Replies"}
+</Button>
+
+{showReplies && (
+  <Card sx={{ maxWidth: 1000, boxShadow: "none" }} key={app_review_id}>
+    {replyList.map((reply: any) => {
+      const user = findUser(reply.user_fid);
+      return (
+        <Box key={reply.id} sx={{ marginLeft: "10%", marginTop: "2%" }}>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <Avatar src={user?.user_image || ""} />
+            <Typography variant="body1" component="div">
+              {user?.user_username || "Unknown"}
+            </Typography>
+          </Stack>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ marginLeft: "56px", marginTop: "1%" }}
+          >
+            {reply.content}
+          </Typography>
+        </Box>
+      );
+    })}
+  </Card>
+)}
+
       <Dialog
         open={replyDialogOpen}
         onClose={handleReplyDialogClose}

@@ -5,49 +5,53 @@ const queryInterface = db.getQueryInterface();
 const AppReply = db.define(
 	"AppReply",
 	{
+		app_reply_id: {
+			autoIncrement: true,
+			type: sequelize.INTEGER,
+			allowNull: false,
+			primaryKey: true,
+		},
 		user_fid: {
 			type: sequelize.INTEGER,
-			allowNull: true,
+			allowNull: false,
+			references: {
+				model: "user",
+				key: "user_id",
+			},
 		},
-		app_fid: {
-			type: sequelize.INTEGER,
-			allowNull: true,
-		},
-
-		app_review_id: {
+		app_review_fid: {
 			type: sequelize.INTEGER,
 			allowNull: false,
-			unique: true,
-			primaryKey: true,
+			references: {
+				model: "AppReview",
+				key: "app_review_id",
+			},
 		},
-
-		num_of_likes: {
-			type: sequelize.INTEGER,
-			allowNull: true,
-			unique: true,
-		},
-
 		content: {
-			type: sequelize.STRING,
-			allowNull: true,
-		},
-		app_review_id: {
-			type: sequelize.INTEGER,
+			type: sequelize.STRING(255),
 			allowNull: false,
-			unique: true,
-			primaryKey: true,
 		},
 	},
 	{
 		sequelize,
-		tableName: "AppReview",
+		tableName: "AppReply",
 		timestamps: true,
 		indexes: [
 			{
 				name: "PRIMARY",
 				unique: true,
 				using: "BTREE",
-				fields: [{ name: "review_id" }],
+				fields: [{ name: "app_reply_id" }],
+			},
+			{
+				name: "user_fid",
+				using: "BTREE",
+				fields: [{ name: "user_id" }],
+			},
+			{
+				name: "app_review_fid",
+				using: "BTREE",
+				fields: [{ name: "app_review_id" }],
 			},
 		],
 	}
@@ -56,8 +60,10 @@ const AppReply = db.define(
 // Drop table if the Schema changed
 
 // db.sync().then(() => {
-// 	AppReviewx.sync({ force: true });
+// 	AppReply.sync({ force: true });
 // });
+
+// AppReply.drop();
 
 //Edit Column
 
