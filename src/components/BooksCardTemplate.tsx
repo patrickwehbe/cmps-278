@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import "./BooksCardTemplate.css";
+import StarIcon from '@mui/icons-material/Star'
 
 
 export default function BookCardTemplate({

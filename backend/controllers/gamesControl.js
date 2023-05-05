@@ -13,9 +13,8 @@ const gameControl = {
 	},
 	getOneGame: async (req, res) => {
 		try {
-			const game = await game.findOne({
-				where: req.game.game_id,
-			});
+			const game = await Game.findByPk(req.params.id);
+			
 			return res.send(game);
 		} catch (err) {
 			return res.status(500).json({ msg: "error from the server side" });

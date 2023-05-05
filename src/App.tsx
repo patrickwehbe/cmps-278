@@ -10,6 +10,7 @@ import ApplicationDetailPage from "./views/ApplicationDetailPage";
 import Game from "./views/game.view";
 import Header from "./components/Header";
 import Book from "./views/book.view";
+import GameDetailPage from "./views/GameDetailPage";
 import BookDetailPage from "./views/BookDetailPage";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 					<Route path="/movies" element={<Movie />} />
 					<Route path="/applications/:id" element={<ApplicationDetailPage />} />
 					<Route path="/games" element={<Game />} />
+					<Route path="/games/:id" element={<GameDetailPage />} />
 					<Route path="/books" element={<Book />} />
 					<Route path="/books/:id" element={<BookDetailPage />} />
 				</Routes>

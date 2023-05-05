@@ -46,7 +46,7 @@ export default function MovieCardTemplate2({
 								color="text.secondary"
 								className="movie-card-rating"
 							>
-								{movie_rating}
+								{movie_rating} <StarIcon sx={{ fontSize: '14px', color: '#ffc107' }} /> 
 							</Typography>
 						</div>
 					</Stack>
