@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Stack } from "@mui/material";
 import { application } from "express";
 import "./ApplicationCardTemplate2.css";
+import StarIcon from '@mui/icons-material/Star'
 
 export default function ApplicationCardTemplate2({
     application_id,
@@ -39,7 +40,7 @@ export default function ApplicationCardTemplate2({
               {application_name}
             </Typography>
             <Typography variant="body2" color="text.secondary" className="application-card-rating">
-              {application_rating}
+              {application_rating} <StarIcon sx={{ fontSize: '14px', color: '#ffc107' }} />
             </Typography>
           </div>
         </Stack>

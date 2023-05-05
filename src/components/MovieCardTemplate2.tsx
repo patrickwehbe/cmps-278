@@ -5,6 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Stack } from "@mui/material";
 import "./MovieCardTemplate2.css";
+import StarIcon from '@mui/icons-material/Star'
 
 export default function MovieCardTemplate2({
 	movie_id,
