@@ -20,6 +20,7 @@ import "./AppReview.css";
 import { useAddAppReplyMutation, useGetAllAppRepliesQuery } from "../api/appreply.api";
 import { any } from "prop-types";
 import { useGetAllUsersQuery } from "../api/user.api";
+import { useGetAllAppReviewsQuery } from "../api/appreview.api";
 
 
 export default function AppReview({
@@ -37,6 +38,7 @@ export default function AppReview({
   const [replyDialogOpen, setReplyDialogOpen] = useState(false);
   const [replyText, setReplyText] = useState("");
   const { data: allReplies } = useGetAllAppRepliesQuery({});
+  const { data: allReviews } = useGetAllAppReviewsQuery({});
   const replies = allReplies?.filter((reply: any) => reply.app_review_fid === app_review_id) || [];
   const [addAppReply] = useAddAppReplyMutation();
   const [showReplies, setShowReplies] = useState(false);
@@ -95,6 +97,7 @@ export default function AppReview({
   console.log(replies);
 
   return (
+    
     <Card sx={{ maxWidth: 1000, boxShadow: "none" }} key={app_review_id}>
       <CardContent>
         <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
