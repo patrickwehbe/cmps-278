@@ -1,0 +1,29 @@
+img.gameimage1{
+    border-radius: 10%;
+    margin-bottom: 80%;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.card .gameId{
+  margin-bottom: 40%;
+}
+
+.card .gameDetails {
+  margin-bottom: 30%;
+}
+
+@media (max-width: 600px) {
+  .GameDetails {
+    text-align: center;
+  }
+  .card {
+    margin-bottom: 16px;
+    background-color: white;
+  }
+}
