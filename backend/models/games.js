@@ -33,6 +33,7 @@ const game = db.define(
 			type: sequelize.STRING,
 			defaultValue: 0,
 		},
+		
         game_type: {
             type: sequelize.STRING, 
             allowNull: false,

@@ -15,7 +15,7 @@ export const gameApi = createApi({
 
 		// GET one value start region
 		getOneGame: build.query({
-			query: (id) => `/${id}`,
+			query: (id) => `/one/${id}`,
 		}),
 		// GET one value end region
 
