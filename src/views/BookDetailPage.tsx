@@ -7,7 +7,6 @@ import { useGetAllBooksQuery } from "../api/books.api";
 import BookCardTemplate from "../components/BooksCardTemplate";
 import { Link } from "react-router-dom";
 import { useGetAllUsersQuery } from '../api/user.api';
-import GamesCardTemplate2 from '../components/GamesCardTemplate2';
 
 
 
@@ -23,8 +22,8 @@ function BookDetailPage() {
 		all && data
 			? all.filter(
 					(book: any) =>
-						book.book_author === data.book_author &&
-						book.book_id !== data.book_id
+						book && book.book_author == data.book_author &&
+						book.book_id != data.book_id
 			  )
 			: [];
 
@@ -34,12 +33,12 @@ function BookDetailPage() {
 		<div>
 			<BookDetail
 
-				book_author={data.book_author}
+				book_author={data.book_author ? data.book_author : '' }
 				book_trailer={data.book_trailer}
 				book_price={data.book_price}
 				book_id={data.book_id}
 				book_name={data.book_name}
-				book_image={data.book_image}
+				book_cover={data.book_cover}
 				book_rating={data.book_rating}
 			/>
 
@@ -48,7 +47,7 @@ function BookDetailPage() {
 					(book: {
 						book_id: any;
 						book_name: any;
-						book_image: any;
+						book_cover: any;
 						book_trailer: any;
 						book_rating: any;
 						book_price: any;
@@ -67,8 +66,8 @@ function BookDetailPage() {
 									book_name={book.book_name}
 									book_rating={book.book_rating}
 									book_price={book.book_price}
-									book_author={book.book_author}
-									book_image={book.book_image}
+									book_author={book.book_author ? book.book_author : '' }
+									book_cover={book.book_cover}
 									book_trailer={book.book_trailer}
 								/>
 							</Link>
