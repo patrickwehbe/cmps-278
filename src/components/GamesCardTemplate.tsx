@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardMedia, Stack } from "@mui/material";
 import "./GamesCard.css";
+import StarIcon from '@mui/icons-material/Star'
 
 export default function GameCardTemplate({
   game_id,
@@ -36,7 +37,7 @@ export default function GameCardTemplate({
               {game_author}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {game_rating}
+              {game_rating} <StarIcon sx={{ fontSize: '14px', color: '#ffc107' }} /> 
             </Typography>
           </div>
         </Stack>
