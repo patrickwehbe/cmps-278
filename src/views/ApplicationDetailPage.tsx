@@ -1,5 +1,5 @@
 // src/containers/ApplicationDetailPage.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ApplicationDetail from '../components/AppDetails';
 import { useGetOneApplicationQuery } from '../api/applications.api';
@@ -12,6 +12,7 @@ import { useGetAllUsersQuery } from '../api/user.api';
 import "./AppDetails.css";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from '@mui/material/Box';
+import { Button } from '@mui/material';
 
 
 
@@ -117,7 +118,13 @@ function ApplicationDetailPage() {
     ));
   };
   
-  
+  const [showAllReviews, setShowAllReviews] = useState(false);
+
+  const reviewsToShow = showAllReviews ? filteredReviews : filteredReviews.slice(0, 5);
+
+  const handleShowMoreReviews = () => {
+    setShowAllReviews(!showAllReviews);
+  };
   
   
 
@@ -178,7 +185,8 @@ function ApplicationDetailPage() {
       <div className="appreview">
         <h2 style = {{marginLeft:"7%"}}>Average rating based on recent reviews: {averageRating.toFixed(1)}</h2>
         {renderRatingBars()}
-        {filteredReviews.map((review: {
+        
+        {reviewsToShow.map((review: {
           app_review_id: any,
           num_of_likes: any,
           content: any,
@@ -207,6 +215,9 @@ function ApplicationDetailPage() {
               </div>
             );
           })}
+          <Button onClick={handleShowMoreReviews} style={{ marginLeft: "7%" }}>
+          {showAllReviews ? "Show Less Reviews" : "Show More Reviews"}
+        </Button>
         </div>
       </div>
     );

@@ -68,7 +68,7 @@ function ApplicationDetail({
             <img className="appimage3" src={application_image5} alt={application_name} />
             <img className="appimage3" src={application_image6} alt={application_name} />
           </div>
-          <Typography variant="h5" sx={{ marginTop: '50px' }}>
+          <Typography variant="h5" sx={{ marginTop: '7%' }}>
             Similar Apps:
           </Typography>
         </div>

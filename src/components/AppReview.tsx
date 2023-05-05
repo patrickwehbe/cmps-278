@@ -43,6 +43,8 @@ export default function AppReview({
   const [addAppReply] = useAddAppReplyMutation();
   const [showReplies, setShowReplies] = useState(false);
   const [replyList, setReplyList] = useState(replies);
+  
+
 
   useEffect(() => {
     setReplyList(replies);
