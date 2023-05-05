@@ -7,6 +7,8 @@ import { useGetAllBooksQuery } from "../api/books.api";
 import BookCardTemplate from "../components/BooksCardTemplate";
 import { Link } from "react-router-dom";
 import { useGetAllUsersQuery } from '../api/user.api';
+import GamesCardTemplate2 from '../components/GamesCardTemplate2';
+
 
 
 function BookDetailPage() {
@@ -20,9 +22,9 @@ function BookDetailPage() {
 	const similarBooks =
 		all && data
 			? all.filter(
-					(app: any) =>
-						app.book_author === data.book_author &&
-						app.book_id !== data.book_id
+					(book: any) =>
+						book.book_author === data.book_author &&
+						book.book_id !== data.book_id
 			  )
 			: [];
 

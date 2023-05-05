@@ -30,6 +30,9 @@ function bookDetail({
             <Typography variant="body2" color="text.secondary" className="book-rating">
               {book_rating}
             </Typography>
+            <Typography variant="body2" color="text.secondary" className="book-rating">
+              {book_author}
+            </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ marginLeft: '8px' }}>
               {book_price === 0 ? 'Free' : `$${book_price}`}
             </Typography>
