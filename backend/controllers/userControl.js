@@ -39,8 +39,8 @@ const userControl = {
 			console.log(passwordHash);
 
 			const newUser = await User.create({
-				user_username: req.body.username,
-				user_email: req.body.email,
+				user_username: username,
+				user_email: email,
 				user_password: passwordHash,
 			});
 			const accesstoken = createAccessToken({ id: newUser.user_id });
@@ -55,7 +55,11 @@ const userControl = {
 			// });
 			refreshTokens.push(refreshtoken);
 
-			res.json({ accesstoken: accesstoken, refreshtoken: refreshtoken });
+			res.json({
+				accesstoken: accesstoken,
+				refreshtoken: refreshtoken,
+				user: newUser,
+			});
 		} catch (err) {
 			return res.status(500).json({ msg: err.message });
 		}
@@ -101,7 +105,11 @@ const userControl = {
 			// 	// secure: true,
 			// });
 
-			res.json({ accesstoken: accesstoken, refreshtoken: refreshtoken });
+			res.json({
+				accesstoken: accesstoken,
+				refreshtoken: refreshtoken,
+				user: user,
+			});
 		} catch (err) {
 			return res.status(500).json({ msg: err.message });
 		}

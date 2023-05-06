@@ -45,6 +45,9 @@ const User = db.define(
 		user_image: {
 			type: sequelize.STRING,
 		},
+		wishlist: {
+			type: sequelize.TEXT,
+		},
 	},
 	{
 		sequelize,
@@ -69,7 +72,19 @@ const User = db.define(
 
 //Edit Column
 
-// queryInterface.addColumn("user", "user_image", sequelize.STRING),
+// queryInterface
+// 	.addColumn("user", "wishlist", {
+// 		type: sequelize.TEXT,
+// 		allowNull: true,
+// 	})
+// 	.catch((err) => {
+// 		console.log(err);
+// 	});
+// queryInterface
+// 	.addColumn("user", "wishlist", sequelize.DataTypes.ARRAY(sequelize.DataTypes.JSON))
+// 	.catch((err) => {
+// 		console.log(err);
+// 	}),
 // 	queryInterface.addColumn("user", "birthDate", sequelize.STRING);
 // queryInterface.addColumn("user", "phoneNumber", sequelize.STRING);
 
