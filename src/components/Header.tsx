@@ -12,8 +12,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
-import { SvgIcon, SvgIconTypeMap } from "@mui/material";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
+
 import { grey } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
@@ -31,9 +30,12 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 	};
 
 	const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-		onTabChange(newValue);
+		setActiveTab(newValue);
 	};
+
 	const [isScrolled, setIsScrolled] = useState(false);
+	const [activeTab, setActiveTab] = useState<string>("Games");
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -58,8 +60,7 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 			sx={{
 				bgcolor: isScrolled ? "white" : "transparent",
 				color: "#000",
-				marginBottom: "100px",
-				padding: "25px 15px",
+
 				position: "sticky",
 				boxShadow: isScrolled ? "0px 0px 10px rgba(0, 0, 0, 0.2)" : "none",
 				transition: "box-shadow 0.3s ease-in-out",
@@ -86,23 +87,39 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 					>
 						<StyledTab
 							label="Games"
-							value={false}
-							onClick={() => navigate("/games")}
+							value="Games"
+							sx={activeTab === "Games" ? activeTabClass : {}}
+							onClick={() => {
+								setActiveTab("Games");
+								navigate("/games");
+							}}
 						/>
 						<StyledTab
 							label="Apps"
-							value={false}
-							onClick={() => navigate("/applications")}
+							value="Apps"
+							sx={activeTab === "Apps" ? activeTabClass : {}}
+							onClick={() => {
+								setActiveTab("Apps");
+								navigate("/applications");
+							}}
 						/>
 						<StyledTab
 							label="Movies"
-							value={false}
-							onClick={() => navigate("/movies")}
+							value="Movies"
+							sx={activeTab === "Movies" ? activeTabClass : {}}
+							onClick={() => {
+								setActiveTab("Movies");
+								navigate("/movies");
+							}}
 						/>
 						<StyledTab
 							label="Books"
-							value={false}
-							onClick={() => navigate("/books")}
+							value="Books"
+							sx={activeTab === "Books" ? activeTabClass : {}}
+							onClick={() => {
+								setActiveTab("Books");
+								navigate("/books");
+							}}
 						/>
 					</StyledTabs>
 				</Box>
@@ -128,9 +145,7 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 							Wishlist
 						</StyledMenuItem>
 						<StyledMenuItem onClick={handleMenuClose}>Profile</StyledMenuItem>
-						<StyledMenuItem onClick={handleMenuClose}>
-							Login/Logout
-						</StyledMenuItem>
+						<StyledMenuItem onClick={handleMenuClose}>logout</StyledMenuItem>
 					</StyledMenu>
 				</Box>
 			</Toolbar>
@@ -147,6 +162,12 @@ const StyledTabs = styled(Tabs)({
 		margin: "0 6px",
 		"&.Mui-selected": {
 			color: "#3cba54",
+			"& .MuiTabIndicator-root": {
+				backgroundColor: "#3cba54",
+				height: "3px",
+				borderTopLeftRadius: "3px",
+				borderTopRightRadius: "3px",
+			},
 		},
 		"&:hover": {
 			backgroundColor: grey[100],
@@ -157,6 +178,20 @@ const StyledTabs = styled(Tabs)({
 const StyledTab = styled(Tab)({
 	minWidth: "unset",
 });
+
+const activeTabClass = {
+	color: "#3cba54",
+	"&::before": {
+		content: '""',
+		display: "block",
+		height: "3px",
+		backgroundColor: "#3cba54",
+		position: "absolute",
+		bottom: 0,
+		left: 0,
+		right: 0,
+	},
+};
 
 const StyledAvatar = styled(Avatar)({
 	width: "32px",
