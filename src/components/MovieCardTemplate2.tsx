@@ -5,7 +5,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions, Stack } from "@mui/material";
 import "./MovieCardTemplate2.css";
-import StarIcon from '@mui/icons-material/Star'
+import StarIcon from "@mui/icons-material/Star";
 
 export default function MovieCardTemplate2({
 	movie_id,
@@ -46,7 +46,8 @@ export default function MovieCardTemplate2({
 								color="text.secondary"
 								className="movie-card-rating"
 							>
-								{movie_rating} <StarIcon sx={{ fontSize: '14px', color: '#ffc107' }} /> 
+								{movie_rating}{" "}
+								<StarIcon sx={{ fontSize: "14px", color: "#ffc107" }} />
 							</Typography>
 						</div>
 					</Stack>
