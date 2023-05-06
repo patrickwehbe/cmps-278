@@ -46,7 +46,6 @@ function App() {
 					<Route path="/books" element={<Book />} />
 					<Route path="/books/:id" element={<BookDetailPage />} />
 				</Routes>
-				<Footer />
 			</Router>
 		</div>
 	);
