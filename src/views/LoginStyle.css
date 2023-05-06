@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 
-.container * {
+* {
 	box-sizing: border-box;
 }
 
-.login > .container {
+.login {
 	display: flex;
-	background-color: white;
+	background-color: #f6f5f7;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
@@ -15,21 +15,21 @@
 	height: 100vh;
 }
 
-.container h1 {
+h1 {
 	font-weight: 700;
 	letter-spacing: -1.5px;
 	margin: 0;
 	margin-bottom: 60px;
 }
 
-.container h1.title {
+h1.title {
 	font-size: 45px;
 	line-height: 45px;
 	margin: 0;
 	text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
 }
 
-.container p {
+p {
 	font-size: 14px;
 	font-weight: 100;
 	line-height: 20px;
@@ -38,12 +38,12 @@
 	text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
 }
 
-.container span {
+span {
 	font-size: 14px;
 	margin-top: 25px;
 }
 
-.container a {
+a {
 	color: #333;
 	font-size: 14px;
 	text-decoration: none;
@@ -51,11 +51,11 @@
 	transition: 0.3s ease-in-out;
 }
 
-.container a:hover {
+a:hover {
 	color: #4bb6b7;
 }
 
-.container .content {
+.content {
 	display: flex;
 	width: 100%;
 	height: 50px;
@@ -63,13 +63,13 @@
 	justify-content: space-around;
 }
 
-.container .content .checkbox {
+.content .checkbox {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.container .content input {
+.content input {
 	accent-color: #333;
 	width: 12px;
 	height: 12px;
@@ -81,7 +81,7 @@
 	padding-left: 5px;
 }
 
-.container button {
+button {
 	position: relative;
 	border-radius: 20px;
 	border: 1px solid #4bb6b7;
@@ -96,49 +96,49 @@
 	transition: 0.3s ease-in-out;
 }
 
-.container button:hover {
+button:hover {
 	letter-spacing: 3px;
 }
 
-.container button:active {
+button:active {
 	transform: scale(0.95);
 }
 
-.container button:focus {
+button:focus {
 	outline: none;
 }
 
-.container button.ghost {
+button.ghost {
 	background-color: rgba(225, 225, 225, 0.2);
 	border: 2px solid #fff;
 	color: #fff;
 }
 
-.container button.ghost i {
+button.ghost i {
 	position: absolute;
 	opacity: 0;
 	transition: 0.3s ease-in-out;
 }
 
-.container button.ghost i.register {
+button.ghost i.register {
 	right: 70px;
 }
 
-.container button.ghost i.login {
+button.ghost i.login {
 	left: 70px;
 }
 
-.container button.ghost:hover i.register {
+button.ghost:hover i.register {
 	right: 40px;
 	opacity: 1;
 }
 
-.container button.ghost:hover i.login {
+button.ghost:hover i.login {
 	left: 40px;
 	opacity: 1;
 }
 
-.container form {
+form {
 	background-color: #fff;
 	display: flex;
 	align-items: center;
@@ -149,7 +149,7 @@
 	text-align: center;
 }
 
-.container input {
+input {
 	background-color: #eee;
 	border-radius: 10px;
 	border: none;
@@ -169,14 +169,14 @@
 	min-height: 600px;
 }
 
-.container .form-container {
+.form-container {
 	position: absolute;
 	top: 0;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
 }
 
-.container .login-container {
+.login-container {
 	left: 0;
 	width: 50%;
 	z-index: 2;
@@ -186,7 +186,7 @@
 	transform: translateX(100%);
 }
 
-.container.register-container {
+.register-container {
 	left: 0;
 	width: 50%;
 	opacity: 0;
