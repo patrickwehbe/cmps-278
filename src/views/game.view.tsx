@@ -6,6 +6,8 @@ import Skeleton from "@mui/material/Skeleton";
 import { Link } from "react-router-dom";
 import GameCardTemplate from "../components/GamesCardTemplate";
 import GameCardTemplate2 from "../components/GamesCardTemplate2";
+import NewsletterPopup from "../components/Newsletterpopup";
+import { CircularProgress } from "@mui/material";
 
 function game() {
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -15,6 +17,8 @@ function game() {
 		});
 
 	if (isError) return <div>An error has occurred!</div>;
+
+	if (isLoading) return <CircularProgress />;
 
 	if (isFetching && !currentData)
 		return (
@@ -70,13 +74,11 @@ function game() {
 	return (
 		<div>
 			<div className="game">
+				<NewsletterPopup />
 				{chunkedData.map((column: any[], columnIndex: any) => (
 					<div key={`column-${columnIndex}`} className="game-column">
 						{column.map((game) => (
-							<div
-								key={game.game_id}
-								className="game-card-wrgameer"
-							>
+							<div key={game.game_id} className="game-card-wrgameer">
 								<Link
 									to={`/games/${game.game_id}`}
 									style={{
@@ -88,17 +90,11 @@ function game() {
 										className="game-card1"
 										game_id={game.game_id}
 										game_name={game.game_name}
-										game_rating={
-											game.game_rating
-										}
+										game_rating={game.game_rating}
 										game_price={game.game_price}
-										game_author={
-											game.game_author
-										}
+										game_author={game.game_author}
 										game_image={game.game_image}
-										game_trailer={
-											game.game_trailer
-										}
+										game_trailer={game.game_trailer}
 									/>
 								</Link>
 							</div>

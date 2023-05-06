@@ -5,6 +5,8 @@ import MovieCardTemplate2 from "../components/MovieCardTemplate2";
 import { useGetAllMoviesQuery } from "../api/movie.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
+import { CircularProgress } from "@mui/material";
+import Footer from "../components/Footer";
 
 function Movie() {
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -12,6 +14,14 @@ function Movie() {
 			pollingInterval: 0, // disable polling for this query
 			refetchOnMountOrArgChange: true,
 		});
+
+	if (isLoading) return;
+	<div
+		className=""
+		style={{ height: "100vh", width: "100vw", display: "grid", placeItems: "center" }}
+	>
+		<CircularProgress />;
+	</div>;
 
 	if (isError) return <div>An error has occurred!</div>;
 
@@ -118,6 +128,9 @@ function Movie() {
 																}
 																movie_category={
 																	movie.movie_category
+																}
+																movie_trailer={
+																	movie.movie_trailer
 																}
 															/>
 														</div>
@@ -336,6 +349,7 @@ function Movie() {
 					)
 				)}
 			</div>
+			<Footer />
 		</>
 	);
 }

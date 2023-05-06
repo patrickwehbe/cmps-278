@@ -6,6 +6,8 @@ import { useGetAllApplicationsQuery } from "../api/applications.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import { Link } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
+import Footer from "../components/Footer";
 
 function Application() {
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -13,6 +15,7 @@ function Application() {
 			pollingInterval: 0, // disable polling for this query
 			refetchOnMountOrArgChange: true,
 		});
+	if (isLoading) return <CircularProgress />;
 
 	if (isError) return <div>An error has occurred!</div>;
 
@@ -210,6 +213,7 @@ function Application() {
 					)
 				)}
 			</div>
+			<Footer />
 		</div>
 	);
 }
