@@ -6,6 +6,9 @@ import { useGetOneBookQuery } from "../api/books.api";
 import { useGetAllBooksQuery } from "../api/books.api";
 import BookCardTemplate from "../components/BooksCardTemplate";
 import { Link } from "react-router-dom";
+import { useGetAllUsersQuery } from '../api/user.api';
+
+
 
 function BookDetailPage() {
 	const { id } = useParams<{ id: string }>();
@@ -15,12 +18,12 @@ function BookDetailPage() {
 		refetchOnMountOrArgChange: true,
 	});
 
-	const similarApps =
+	const similarBooks =
 		all && data
 			? all.filter(
-					(app: any) =>
-						app.book_author === data.book_author &&
-						app.book_id !== data.book_id
+					(book: any) =>
+						book && book.book_author == data.book_author &&
+						book.book_id != data.book_id
 			  )
 			: [];
 
@@ -29,27 +32,22 @@ function BookDetailPage() {
 	return (
 		<div>
 			<BookDetail
-				book_image1={data.book_image1}
-				book_image2={data.book_image2}
-				book_image3={data.book_image3}
-				book_image4={data.book_image4}
-				book_image5={data.book_image5}
-				book_image6={data.book_image6}
-				book_author={data.book_author}
+
+				book_author={data.book_author ? data.book_author : '' }
 				book_trailer={data.book_trailer}
 				book_price={data.book_price}
 				book_id={data.book_id}
 				book_name={data.book_name}
-				book_image={data.book_image}
+				book_cover={data.book_cover}
 				book_rating={data.book_rating}
 			/>
 
 			<div className="book2">
-				{similarApps.map(
+				{similarBooks.map(
 					(book: {
 						book_id: any;
 						book_name: any;
-						book_image: any;
+						book_cover: any;
 						book_trailer: any;
 						book_rating: any;
 						book_price: any;
@@ -68,8 +66,8 @@ function BookDetailPage() {
 									book_name={book.book_name}
 									book_rating={book.book_rating}
 									book_price={book.book_price}
-									book_author={book.book_author}
-									book_image={book.book_image}
+									book_author={book.book_author ? book.book_author : '' }
+									book_cover={book.book_cover}
 									book_trailer={book.book_trailer}
 								/>
 							</Link>

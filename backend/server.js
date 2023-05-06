@@ -31,6 +31,9 @@ app.use("/book", require("./routes/bookRouter"));
 app.use("/game", require("./routes/gameRouter"));
 app.use("/movie", require("./routes/movieRouter"));
 app.use("/appreview", require("./routes/appreviewRouter"));
+app.use("/appreply", require("./routes/appreplyRouter"));
+app.use("/bookreview", require("./routes/bookreviewRouter"));
+app.use("/bookreply", require("./routes/bookreplyRouter"));
 
 app.use("/", (req, res) => {
 	res.sendFile(resolve(__dirname + `/index.html`));

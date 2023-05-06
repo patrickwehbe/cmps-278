@@ -4,6 +4,7 @@ import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import "./AppDetails.css";
 import { useGetAllApplicationsQuery } from '../api/applications.api';
+import StarIcon from '@mui/icons-material/Star'
 
 function ApplicationDetail({ 
     application_id,
@@ -28,7 +29,7 @@ function ApplicationDetail({
           <img className="appimage2" src={application_image} alt={application_name} />
           <Box className="rating-wrapper" display="flex">
             <Typography variant="body2" color="text.secondary" className="app-rating">
-              {application_rating}
+              {application_rating} <StarIcon sx={{ fontSize: '14px', color: '#ffc107' }} /> 
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ marginLeft: '8px' }}>
               {application_price === 0 ? 'Free' : `$${application_price}`}
@@ -67,7 +68,7 @@ function ApplicationDetail({
             <img className="appimage3" src={application_image5} alt={application_name} />
             <img className="appimage3" src={application_image6} alt={application_name} />
           </div>
-          <Typography variant="h5" sx={{ marginTop: '50px' }}>
+          <Typography variant="h5" sx={{ marginTop: '7%' }}>
             Similar Apps:
           </Typography>
         </div>

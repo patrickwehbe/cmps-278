@@ -13,9 +13,7 @@ const bookControl = {
 	},
 	getOneBook: async (req, res) => {
 		try {
-			const result = await book.findOne({
-				where: req.book.book_id,
-			});
+			const result = await book.findByPk(req.params.id);
 			return res.send(result);
 		} catch (err) {
 			return res.status(500).json({ msg: "error from the server side" });

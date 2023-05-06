@@ -5,6 +5,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import StarIcon from '@mui/icons-material/Star'
+
+
 function formatDate(dateString: string | number | Date) {
 	const date = new Date(dateString);
 	const options = { year: "numeric", month: "long", day: "numeric" };
@@ -40,7 +43,7 @@ export default function MovieCardTemplate({
 						{movie_price}
 					</Typography>
 					<Typography variant="body2" color="text.secondary">
-						{movie_rating}
+						{movie_rating} <StarIcon sx={{ fontSize: '14px', color: '#ffc107' }} /> 
 					</Typography>
 					<Typography variant="body2" color="text.secondary">
 						{formatDate(date_released)}
