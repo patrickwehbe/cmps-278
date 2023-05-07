@@ -1,12 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Book.css";
 import BooksCardTemplate from "../components/BooksCardTemplate";
 import { useGetAllBooksQuery } from "../api/books.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import { Link } from "react-router-dom";
-import { CircularProgress, Divider } from "@mui/material";
+import { CircularProgress, Divider, InputAdornment, MenuItem } from "@mui/material";
 import Footer from "../components/Footer";
+import { styled } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import SearchIcon from "@mui/icons-material/Search";
+
+const SearchContainer = styled("div")(({ theme }) => ({
+	display: "flex",
+	flexDirection: "row",
+	alignItems: "center",
+	justifyContent: "space-between",
+	padding: "20px",
+	width: "100%",
+	borderRadius: "120px",
+}));
+
+const SearchInput = styled(TextField)(({ theme }) => ({
+	width: "50%",
+	[theme.breakpoints.down("sm")]: {
+		width: "100%",
+	},
+	borderRadius: "120px",
+}));
+
+const FilterSelect = styled(Select)(({ theme }) => ({
+	minWidth: "100px",
+	marginLeft: "20px",
+	[theme.breakpoints.down("sm")]: {
+		marginLeft: 0,
+		marginTop: "20px",
+		minWidth: 0,
+		width: "100%",
+	},
+}));
 
 function Book() {
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -14,6 +47,7 @@ function Book() {
 			pollingInterval: 0, // disable polling for this query
 			refetchOnMountOrArgChange: true,
 		});
+	const [keyword, setKeyword] = useState("");
 
 	if (isError) return <div>An error has occurred!</div>;
 	if (isLoading) return <CircularProgress />;
@@ -68,6 +102,21 @@ function Book() {
 
 	return (
 		<div>
+			<SearchContainer>
+				<SearchInput
+					label="Search"
+					variant="outlined"
+					value={keyword}
+					onChange={(e) => setKeyword(e.target.value)}
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end">
+								<SearchIcon />
+							</InputAdornment>
+						),
+					}}
+				/>
+			</SearchContainer>
 			<h2 className="recommendedtext">Recommended for you</h2>
 			<div className="book2">
 				{recommendedBooks.map(
