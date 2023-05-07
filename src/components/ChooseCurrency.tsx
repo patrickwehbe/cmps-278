@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { IconButton } from "@mui/material";
 import { ArrowDropDown } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { setCurr } from "../redux/auth";
 
 const useStyles = makeStyles({
 	root: {
@@ -36,6 +38,7 @@ const useStyles = makeStyles({
 });
 
 const ChooseCurrency = () => {
+	const dispatch = useDispatch();
 	const classes = useStyles();
 	const [isOpen, setIsOpen] = useState(false);
 	const [currency, setCurrency] = useState("lbp");
@@ -46,6 +49,8 @@ const ChooseCurrency = () => {
 
 	const handleSelect = (value: any) => () => {
 		setCurrency(value);
+		value == "lbp" ? dispatch(setCurr("LBP")) : dispatch(setCurr("$"));
+
 		setIsOpen(false);
 	};
 

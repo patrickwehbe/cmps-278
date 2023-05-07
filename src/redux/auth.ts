@@ -7,6 +7,7 @@ const initialState = {
 	refreshToken: null,
 	lastVisited: [] as any,
 	wishlist: [] as any,
+	currency: "LBP",
 };
 
 interface VisitedAction {
@@ -54,13 +55,18 @@ const authSlice = createSlice({
 		addWishlist: (state, action) => {
 			state.wishlist = [...state.wishlist, action.payload];
 		},
+		setCurr: (state, action) => {
+			state.currency = action.payload;
+		},
 	},
 });
 
 export const selectUser = (state: any) => state.auth.user;
 export const selectLastVisited = (state: any) => state.auth.lastVisited;
 export const selectWishlist = (state: any) => state.auth.wishlist;
+export const selectCurrency = (state: any) => state.auth.currency;
 
-export const { login, logout, register, setVisited, addWishlist } = authSlice.actions;
+export const { login, logout, register, setVisited, addWishlist, setCurr } =
+	authSlice.actions;
 
 export default authSlice.reducer;

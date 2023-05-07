@@ -6,7 +6,7 @@ import "./AppDetails.css";
 import { useGetAllApplicationsQuery } from "../api/applications.api";
 import StarIcon from "@mui/icons-material/Star";
 import { useDispatch } from "react-redux";
-import { selectUser, selectWishlist, addWishlist } from "../redux/auth";
+import { selectUser, selectWishlist, addWishlist, selectCurrency } from "../redux/auth";
 import { useSelector } from "react-redux";
 
 function ApplicationDetail({
@@ -59,8 +59,12 @@ function ApplicationDetail({
 			}
 		);
 	};
+	const currency = useSelector(selectCurrency);
+	currency === "LBP"
+		? (application_price = application_price * 89000)
+		: application_price;
 
-	useEffect(() => {}, [dispatch]);
+	useEffect(() => {}, [dispatch, currency]);
 	return (
 		<div key={application_id} className="app-detail-container">
 			<div className="header-container">
@@ -85,7 +89,9 @@ function ApplicationDetail({
 							color="text.secondary"
 							sx={{ marginLeft: "8px" }}
 						>
-							{application_price === 0 ? "Free" : `$${application_price}`}
+							{application_price === 0
+								? "Free"
+								: `${currency + " " + application_price}`}
 						</Typography>
 					</Box>
 					<Button
