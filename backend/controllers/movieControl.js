@@ -46,6 +46,7 @@ const movieControl = {
 				movie_cast: movie_cast,
 				movie_trailer: movie_trailer,
 			});
+
 			return res.send(newMovie);
 		} catch (err) {
 			return res.status(500).send({ error: err.message });

@@ -20,16 +20,14 @@ const Movie = db.define(
 		},
 		movie_image: {
 			type: sequelize.STRING,
-			allowNull: false,
 			unique: true,
 		},
 		movie_rating: {
 			type: sequelize.FLOAT,
-			allowNull: false,
 		},
 		movie_price: {
 			type: sequelize.INTEGER,
-			allowNull: false,
+
 			defaultValue: 0,
 		},
 		movie_director: {
@@ -38,7 +36,6 @@ const Movie = db.define(
 		},
 		date_released: {
 			type: sequelize.DATE,
-			allowNull: false,
 		},
 		movie_category: {
 			type: sequelize.STRING,
@@ -74,7 +71,7 @@ const Movie = db.define(
 //Edit Column
 
 //queryInterface.addColumn("movies", "movie_description", sequelize.STRING),
-	// 	queryInterface.addColumn("Movie", "birthDate", sequelize.STRING);
-	// queryInterface.addColumn("Movie", "phoneNumber", sequelize.STRING);
+// 	queryInterface.addColumn("Movie", "birthDate", sequelize.STRING);
+// queryInterface.addColumn("Movie", "phoneNumber", sequelize.STRING);
 
-	(module.exports = Movie);
+module.exports = Movie;

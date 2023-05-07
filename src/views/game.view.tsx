@@ -15,7 +15,7 @@ import GameCardTemplate2 from "../components/GamesCardTemplate2";
 import NewsletterPopup from "../components/Newsletterpopup";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { wishlist } from "../redux/auth";
+import { addWishlist } from "../redux/auth";
 import BannerCarousel from "../components/BannerCarousel";
 import AppCard from "../components/AppCard";
 
@@ -55,6 +55,7 @@ const SearchContainer = styled("div")(({ theme }) => ({
 	justifyContent: "space-between",
 	padding: "20px",
 	width: "100%",
+	borderRadius: "120px",
 }));
 
 const SearchInput = styled(TextField)(({ theme }) => ({
@@ -62,6 +63,7 @@ const SearchInput = styled(TextField)(({ theme }) => ({
 	[theme.breakpoints.down("sm")]: {
 		width: "100%",
 	},
+	borderRadius: "120px",
 }));
 
 const FilterSelect = styled(Select)(({ theme }) => ({
@@ -178,15 +180,6 @@ function Game() {
 
 	return (
 		<>
-			<AppCard
-				imageUrl={
-					"https://play-lh.googleusercontent.com/S6JjxuO4N4dlmxGLy7je09jdL9_qacnaU7AcUOW3qygcJogqZpAHQEE6PTgLGsLhkUDitJsMpdE=w648-h364-rw"
-				}
-				label={"Special Event"}
-				title={"Tst"}
-				subtitle={"TEt"}
-			/>
-
 			<GameContainer>
 				<NewsletterPopup />
 				<SearchContainer>
@@ -203,6 +196,7 @@ function Game() {
 							),
 						}}
 					/>
+
 					<FilterSelect
 						value={categoryFilter}
 						onChange={(e) => setCategoryFilter(e.target.value)}
@@ -216,6 +210,14 @@ function Game() {
 						))}
 					</FilterSelect>
 				</SearchContainer>
+				<AppCard
+					imageUrl={
+						"https://play-lh.googleusercontent.com/S6JjxuO4N4dlmxGLy7je09jdL9_qacnaU7AcUOW3qygcJogqZpAHQEE6PTgLGsLhkUDitJsMpdE=w648-h364-rw"
+					}
+					label={"Special Event"}
+					title={"Tst"}
+					subtitle={"TEt"}
+				/>
 				<GameColumns>
 					{chunkedData.map((column: any, columnIndex: any) => (
 						<GameColumn key={`column-${columnIndex}`}>

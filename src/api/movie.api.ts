@@ -43,4 +43,5 @@ export const movieApi = createApi({
 	// DELETE value start region
 });
 
-export const { useGetAllMoviesQuery, useGetOneMovieQuery } = movieApi;
+export const { useGetAllMoviesQuery, useGetOneMovieQuery, useAddMovieMutation } =
+	movieApi;

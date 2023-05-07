@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import MaterialReactTable, {
 	type MaterialReactTableProps,
 	type MRT_Cell,
@@ -19,6 +19,11 @@ import {
 	Tooltip,
 } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
+import {
+	useAddBookMutation,
+	useEditValueMutation,
+	useGetAllBooksQuery,
+} from "../api/books.api";
 
 export const data: any[] = [
 	{
@@ -80,16 +85,14 @@ export const data: any[] = [
 ];
 
 const BooksTable = () => {
+	const [editValue, { isSuccess }] = useEditValueMutation();
 	const [createModalOpen, setCreateModalOpen] = useState(false);
-	const [tableData, setTableData] = useState<any[]>(() => data);
+	const [tableData, setTableData] = useState<any[]>([]);
 	const [validationErrors, setValidationErrors] = useState<{
 		[cellId: string]: string;
 	}>({});
 
-	const handleCreateNewRow = (values: any) => {
-		tableData.push(values);
-		setTableData([...tableData]);
-	};
+	const handleCreateNewRow = (values: any) => {};
 
 	const handleSaveRowEdits: MaterialReactTableProps<any>["onEditingRowSave"] = async ({
 		exitEditingMode,
@@ -97,9 +100,15 @@ const BooksTable = () => {
 		values,
 	}: any) => {
 		if (!Object.keys(validationErrors).length) {
-			tableData[row.index] = values;
+			// tableData[row.index] = values;
 			//send/receive api updates here, then refetch or update local table data for re-render
-			setTableData([...tableData]);
+
+			console.log(tableData[row.index]);
+			console.log(values);
+
+			editValue(values);
+
+			// setTableData([...tableData]);
 			exitEditingMode(); //required to exit editing mode and close modal
 		}
 	};
@@ -158,7 +167,7 @@ const BooksTable = () => {
 	const columns = useMemo<MRT_ColumnDef<any>[]>(
 		() => [
 			{
-				accessorKey: "id",
+				accessorKey: "book_id",
 				header: "ID",
 				enableColumnOrdering: false,
 				enableEditing: false, //disable editing on this column
@@ -166,33 +175,24 @@ const BooksTable = () => {
 				size: 80,
 			},
 			{
-				accessorKey: "firstName",
-				header: "First Name",
+				accessorKey: "book_name",
+				header: "Book Name",
 				size: 140,
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
 				}),
 			},
 			{
-				accessorKey: "lastName",
-				header: "Last Name",
+				accessorKey: "book_author",
+				header: "Book Author",
 				size: 140,
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
 				}),
 			},
 			{
-				accessorKey: "email",
-				header: "Email",
-				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
-					...getCommonEditTextFieldProps(cell),
-					type: "email",
-				}),
-			},
-			{
-				accessorKey: "age",
-				header: "Age",
-				size: 80,
+				accessorKey: "book_rating",
+				header: "Book Rating",
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
 					type: "number",
@@ -201,6 +201,17 @@ const BooksTable = () => {
 		],
 		[getCommonEditTextFieldProps]
 	);
+
+	const { currentData, isError, isLoading, error, isFetching } = useGetAllBooksQuery({
+		pollingInterval: 0, // disable polling for this query
+		refetchOnMountOrArgChange: true,
+	});
+	useEffect(() => {}, [isSuccess]);
+
+	if (isError) return <div>failed to load</div>;
+	if (isLoading) return <div>loading...</div>;
+
+	tableData.length < 1 && setTableData((tableData: any) => currentData);
 
 	return (
 		<>
@@ -243,11 +254,11 @@ const BooksTable = () => {
 						onClick={() => setCreateModalOpen(true)}
 						variant="contained"
 					>
-						Create New Game
+						Create New Book
 					</Button>
 				)}
 			/>
-			<CreateNewGameModal
+			<CreateNewBookModal
 				columns={columns}
 				open={createModalOpen}
 				onClose={() => setCreateModalOpen(false)}
@@ -265,12 +276,13 @@ interface CreateModalProps {
 }
 
 //Users of creating a mui dialog modal for creating new rows
-export const CreateNewGameModal = ({
+export const CreateNewBookModal = ({
 	open,
 	columns,
 	onClose,
 	onSubmit,
 }: CreateModalProps) => {
+	const [addBook] = useAddBookMutation();
 	const [values, setValues] = useState<any>(() =>
 		columns.reduce((acc, column) => {
 			acc[column.accessorKey ?? ""] = "";
@@ -280,13 +292,14 @@ export const CreateNewGameModal = ({
 
 	const handleSubmit = () => {
 		//put your validation logic here
-		onSubmit(values);
+		addBook(values);
+
 		onClose();
 	};
 
 	return (
 		<Dialog open={open}>
-			<DialogTitle textAlign="center">Create New Game</DialogTitle>
+			<DialogTitle textAlign="center">Create New Book</DialogTitle>
 			<DialogContent>
 				<form onSubmit={(e) => e.preventDefault()}>
 					<Stack
@@ -315,7 +328,7 @@ export const CreateNewGameModal = ({
 			<DialogActions sx={{ p: "1.25rem" }}>
 				<Button onClick={onClose}>Cancel</Button>
 				<Button color="secondary" onClick={handleSubmit} variant="contained">
-					Create New Game
+					Create New Book
 				</Button>
 			</DialogActions>
 		</Dialog>

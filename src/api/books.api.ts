@@ -33,7 +33,7 @@ export const bookApi = createApi({
 		// PATCH value start region
 		editValue: build.mutation({
 			query: (body) => ({
-				url: `updateBook/${body.id}`,
+				url: `updateBook/${body.book_id}`,
 				method: "PUT",
 				body,
 			}),
@@ -43,4 +43,9 @@ export const bookApi = createApi({
 	// DELETE value start region
 });
 
-export const { useGetAllBooksQuery, useGetOneBookQuery } = bookApi;
+export const {
+	useGetAllBooksQuery,
+	useGetOneBookQuery,
+	useAddBookMutation,
+	useEditValueMutation,
+} = bookApi;

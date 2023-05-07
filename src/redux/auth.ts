@@ -23,6 +23,9 @@ const authSlice = createSlice({
 			state.user = action.payload.user;
 			state.accessToken = action.payload.accesstoken;
 			state.refreshToken = action.payload.refreshtoken;
+			state.wishlist = action.payload.user.wishlist
+				? JSON.parse(action.payload.user.wishlist)
+				: [];
 		},
 		logout: (state) => {
 			state.isLoggedIn = false;
@@ -34,11 +37,11 @@ const authSlice = createSlice({
 			state.accessToken = action.payload.accesstoken;
 			state.refreshToken = action.payload.refreshtoken;
 		},
-		visited: (state, action: VisitedAction) => {
-			state.lastVisited.push(action.payload);
+		setVisited: (state, action: VisitedAction) => {
+			state.lastVisited = [...state.lastVisited.slice(-24), action.payload];
 		},
-		wishlist: (state, action) => {
-			state.wishlist.push(action.payload);
+		addWishlist: (state, action) => {
+			state.wishlist = [...state.wishlist, action.payload];
 		},
 	},
 });
@@ -47,6 +50,6 @@ export const selectUser = (state: any) => state.auth.user;
 export const selectLastVisited = (state: any) => state.auth.lastVisited;
 export const selectWishlist = (state: any) => state.auth.wishlist;
 
-export const { login, logout, register, visited, wishlist } = authSlice.actions;
+export const { login, logout, register, setVisited, addWishlist } = authSlice.actions;
 
 export default authSlice.reducer;

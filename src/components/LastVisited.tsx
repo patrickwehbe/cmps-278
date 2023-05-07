@@ -1,10 +1,10 @@
-// AdminView.tsx
+import React from "react";
+import { useSelector } from "react-redux";
 
-import { useState } from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { Card, CardContent, Typography, Link, Grid } from "@mui/material";
+import { Grid, Typography, Card, CardContent } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Apps, Book, Movie, Gamepad } from "@mui/icons-material";
+import { Book, Movie, Gamepad, Apps } from "@mui/icons-material";
+import { selectLastVisited } from "../redux/auth";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -30,14 +30,41 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const AdminView = () => {
-	const classes = useStyles();
+interface LastVisitedItem {
+	title: string;
+	image: string;
+	url: string;
+}
 
-	const [usersCount, setUsersCount] = useState(10);
-	const [gamesCount, setGamesCount] = useState(20);
-	const [applicationsCount, setApplicationsCount] = useState(5);
-	const [moviesCount, setMoviesCount] = useState(15);
-	const [booksCount, setBooksCount] = useState(30);
+interface FilteredLastVisited {
+	title: string;
+	items: LastVisitedItem[];
+}
+
+const LastVisited: React.FC = () => {
+	const classes = useStyles();
+	const lastVisited = useSelector(selectLastVisited);
+
+	const filterLastVisited = (filter: string): FilteredLastVisited => {
+		const filteredItems = lastVisited
+			.filter((item: any) => item.filter === filter)
+			.slice(-24)
+			.map((item: any) => {
+				return {
+					title: item.title,
+					image: item.image,
+					url: item.url,
+				};
+			});
+		return { title: filter, items: filteredItems };
+	};
+
+	const filteredLastVisited: FilteredLastVisited[] = [
+		filterLastVisited("applications"),
+		filterLastVisited("movies"),
+		filterLastVisited("books"),
+		filterLastVisited("games"),
+	];
 
 	return (
 		<div className={classes.root}>
@@ -68,7 +95,7 @@ const AdminView = () => {
 									{filtered.title}
 								</Typography>
 								{filtered.items.length > 0 ? (
-									filtered.items.map((item: any) => (
+									filtered.items.map((item) => (
 										<div key={item.title}>
 											<a
 												href={item.url}
@@ -108,5 +135,4 @@ const AdminView = () => {
 		</div>
 	);
 };
-
-export default AdminView;
+export default LastVisited;

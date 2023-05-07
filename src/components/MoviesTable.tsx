@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import MaterialReactTable, {
 	type MaterialReactTableProps,
 	type MRT_Cell,
@@ -19,6 +19,8 @@ import {
 	Tooltip,
 } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
+import { useAddMovieMutation, useGetAllMoviesQuery } from "../api/movie.api";
+import { format } from "date-fns";
 
 export const data: any[] = [
 	{
@@ -81,7 +83,7 @@ export const data: any[] = [
 
 const MoviesTable = () => {
 	const [createModalOpen, setCreateModalOpen] = useState(false);
-	const [tableData, setTableData] = useState<any[]>(() => data);
+	const [tableData, setTableData] = useState<any[]>([]);
 	const [validationErrors, setValidationErrors] = useState<{
 		[cellId: string]: string;
 	}>({});
@@ -111,11 +113,12 @@ const MoviesTable = () => {
 	const handleDeleteRow = useCallback(
 		(row: MRT_Row<any>) => {
 			if (
-				!confirm(`Are you sure you want to delete ${row.getValue("firstName")}`)
+				!confirm(`Are you sure you want to delete ${row.getValue("movie_name")}`)
 			) {
 				return;
 			}
 			//send api delete request here, then refetch or update local table data for re-render
+
 			tableData.splice(row.index, 1);
 			setTableData([...tableData]);
 		},
@@ -158,7 +161,7 @@ const MoviesTable = () => {
 	const columns = useMemo<MRT_ColumnDef<any>[]>(
 		() => [
 			{
-				accessorKey: "id",
+				accessorKey: "movie_id",
 				header: "ID",
 				enableColumnOrdering: false,
 				enableEditing: false, //disable editing on this column
@@ -166,41 +169,59 @@ const MoviesTable = () => {
 				size: 80,
 			},
 			{
-				accessorKey: "firstName",
-				header: "First Name",
+				accessorKey: "movie_name",
+				header: "Movie Name",
 				size: 140,
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
 				}),
 			},
 			{
-				accessorKey: "lastName",
-				header: "Last Name",
+				accessorKey: "movie_director",
+				header: "Movie Director",
 				size: 140,
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
 				}),
 			},
 			{
-				accessorKey: "email",
-				header: "Email",
+				accessorKey: "movie_category",
+				header: "Movie Category",
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
-					type: "email",
 				}),
 			},
 			{
-				accessorKey: "age",
-				header: "Age",
+				accessorKey: "movie_cast",
+				header: "Movie Cast",
 				size: 80,
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
-					type: "number",
+				}),
+			},
+			{
+				accessorKey: "date_released",
+				header: "Release Date",
+				size: 80,
+				valueFormatter: (params: any) => format(params.value, "yyyy-MM-dd"),
+				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
+					...getCommonEditTextFieldProps(cell),
 				}),
 			},
 		],
 		[getCommonEditTextFieldProps]
 	);
+
+	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
+		useGetAllMoviesQuery({
+			pollingInterval: 0, // disable polling for this query
+			refetchOnMountOrArgChange: true,
+		});
+
+	if (isError) return <div>failed to load</div>;
+	if (isLoading) return <div>loading...</div>;
+
+	tableData.length < 1 && setTableData((tableData: any) => currentData);
 
 	return (
 		<>
@@ -271,6 +292,7 @@ export const CreateNewMovieModal = ({
 	onClose,
 	onSubmit,
 }: CreateModalProps) => {
+	const [addMovie] = useAddMovieMutation();
 	const [values, setValues] = useState<any>(() =>
 		columns.reduce((acc, column) => {
 			acc[column.accessorKey ?? ""] = "";
@@ -278,9 +300,10 @@ export const CreateNewMovieModal = ({
 		}, {} as any)
 	);
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		//put your validation logic here
-		onSubmit(values);
+		addMovie(values);
+
 		onClose();
 	};
 

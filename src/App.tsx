@@ -20,6 +20,8 @@ import GamesTable from "./components/GamesTable";
 import UsersTable from "./components/UsersTable";
 import Footer from "./components/Footer";
 import TermsOfServicePage from "./components/TermsOfServicePage";
+import Wishlist from "./components/WishList";
+import LastVisited from "./components/LastVisited";
 
 function App() {
 	return (
@@ -32,6 +34,8 @@ function App() {
 				/>
 				<Routes>
 					<Route path="/" element={<Login />} />
+					<Route path="/wishlist" element={<Wishlist />} />
+					<Route path="/visited" element={<LastVisited />} />
 					<Route path="/terms" element={<TermsOfServicePage />} />
 					<Route path="/admin" element={<AdminView />} />
 					<Route path="/admin/users" element={<UsersTable />} />

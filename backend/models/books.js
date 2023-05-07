@@ -8,7 +8,7 @@ const book = db.define(
 		book_id: {
 			autoIncrement: true,
 			type: sequelize.INTEGER,
-			allowNull: false,
+
 			primaryKey: true,
 		},
 		book_name: {
@@ -17,16 +17,15 @@ const book = db.define(
 		},
 		book_cover: {
 			type: sequelize.STRING,
-			allowNull: false,
+
 			unique: true,
 		},
 		book_rating: {
 			type: sequelize.FLOAT,
-			allowNull: false,
 		},
 		book_price: {
 			type: sequelize.INTEGER,
-			allowNull: false,
+
 			defaultValue: 0,
 		},
 		book_author: {
@@ -36,7 +35,7 @@ const book = db.define(
 	},
 	{
 		sequelize,
-        tableName: "books",
+		tableName: "books",
 		timestamps: true,
 		indexes: [
 			{

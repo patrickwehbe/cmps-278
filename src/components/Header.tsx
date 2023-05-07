@@ -145,8 +145,11 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 						open={Boolean(anchorEl)}
 						onClose={handleMenuClose}
 					>
-						<StyledMenuItem onClick={handleMenuClose}>
+						<StyledMenuItem onClick={() => navigate("/wishlist")}>
 							Wishlist
+						</StyledMenuItem>
+						<StyledMenuItem onClick={() => navigate("/visited")}>
+							Last visited
 						</StyledMenuItem>
 						<StyledMenuItem onClick={handleMenuClose}>Profile</StyledMenuItem>
 						<StyledMenuItem onClick={handleMenuClose}>logout</StyledMenuItem>

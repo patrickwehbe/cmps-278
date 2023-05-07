@@ -241,15 +241,11 @@ const userControl = {
 	},
 	changeUserInfo: async (req, res) => {
 		try {
-			const user = await User.findOne({
-				where: {
-					user_id: req.params.id,
-				},
-			});
+			const user = await User.findByPk(req.params.id);
 
 			if (!user) return res.status(400).json({ msg: "user not found" });
 
-			const newUser = await User.update(
+			const updateduser = await User.update(
 				{
 					user_username: req.body.username,
 					user_username: req.body.username,
@@ -258,6 +254,7 @@ const userControl = {
 					birthDate: req.body.birthDate,
 					phoneNumber: req.body.phoneNumber,
 					user_image: req.body.user_image,
+					wishlist: req.body.wishlist,
 				},
 				{
 					where: {
@@ -265,7 +262,7 @@ const userControl = {
 					},
 				}
 			);
-			res.status(200).json({ msg: "user updated" });
+			res.status(200).json({ user: updateduser });
 		} catch (err) {
 			res.status(500).json({ msg: err.message });
 		}

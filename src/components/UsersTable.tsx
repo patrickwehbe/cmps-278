@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import MaterialReactTable, {
 	type MaterialReactTableProps,
 	type MRT_Cell,
@@ -19,14 +19,7 @@ import {
 	Tooltip,
 } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
-
-export type Person = {
-	id: string;
-	firstName: string;
-	lastName: string;
-	email: string;
-	age: number;
-};
+import { useGetAllUsersQuery } from "../api";
 
 export const data: any[] = [
 	{
@@ -87,36 +80,41 @@ export const data: any[] = [
 	},
 ];
 
-const UsersTable = () => {
+const UsersTable: React.FC = () => {
 	const [createModalOpen, setCreateModalOpen] = useState(false);
-	const [tableData, setTableData] = useState<Person[]>(() => data);
+	const [tableData, setTableData] = useState<any>([]);
 	const [validationErrors, setValidationErrors] = useState<{
 		[cellId: string]: string;
 	}>({});
 
-	const handleCreateNewRow = (values: Person) => {
+	const handleCreateNewRow = (values: any) => {
 		tableData.push(values);
 		setTableData([...tableData]);
 	};
 
-	const handleSaveRowEdits: MaterialReactTableProps<Person>["onEditingRowSave"] =
-		async ({ exitEditingMode, row, values }: any) => {
-			if (!Object.keys(validationErrors).length) {
-				tableData[row.index] = values;
-				//send/receive api updates here, then refetch or update local table data for re-render
-				setTableData([...tableData]);
-				exitEditingMode(); //required to exit editing mode and close modal
-			}
-		};
+	const handleSaveRowEdits: MaterialReactTableProps<any>["onEditingRowSave"] = async ({
+		exitEditingMode,
+		row,
+		values,
+	}: any) => {
+		if (!Object.keys(validationErrors).length) {
+			tableData[row.index] = values;
+			//send/receive api updates here, then refetch or update local table data for re-render
+			setTableData([...tableData]);
+			exitEditingMode(); //required to exit editing mode and close modal
+		}
+	};
 
 	const handleCancelRowEdits = () => {
 		setValidationErrors({});
 	};
 
 	const handleDeleteRow = useCallback(
-		(row: MRT_Row<Person>) => {
+		(row: MRT_Row<any>) => {
 			if (
-				!confirm(`Are you sure you want to delete ${row.getValue("firstName")}`)
+				!confirm(
+					`Are you sure you want to delete ${row.getValue("user_username")}`
+				)
 			) {
 				return;
 			}
@@ -129,8 +127,8 @@ const UsersTable = () => {
 
 	const getCommonEditTextFieldProps = useCallback(
 		(
-			cell: MRT_Cell<Person>
-		): MRT_ColumnDef<Person>["muiTableBodyCellEditTextFieldProps"] => {
+			cell: MRT_Cell<any>
+		): MRT_ColumnDef<any>["muiTableBodyCellEditTextFieldProps"] => {
 			return {
 				error: !!validationErrors[cell.id],
 				helperText: validationErrors[cell.id],
@@ -160,10 +158,10 @@ const UsersTable = () => {
 		[validationErrors]
 	);
 
-	const columns = useMemo<MRT_ColumnDef<Person>[]>(
+	const columns = useMemo<MRT_ColumnDef<any>[]>(
 		() => [
 			{
-				accessorKey: "id",
+				accessorKey: "user_id",
 				header: "ID",
 				enableColumnOrdering: false,
 				enableEditing: false, //disable editing on this column
@@ -171,23 +169,16 @@ const UsersTable = () => {
 				size: 80,
 			},
 			{
-				accessorKey: "firstName",
-				header: "First Name",
+				accessorKey: "user_username",
+				header: "User Name",
 				size: 140,
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
 				}),
 			},
+
 			{
-				accessorKey: "lastName",
-				header: "Last Name",
-				size: 140,
-				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
-					...getCommonEditTextFieldProps(cell),
-				}),
-			},
-			{
-				accessorKey: "email",
+				accessorKey: "user_email",
 				header: "Email",
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
@@ -195,8 +186,8 @@ const UsersTable = () => {
 				}),
 			},
 			{
-				accessorKey: "age",
-				header: "Age",
+				accessorKey: "user_role",
+				header: "Role",
 				size: 80,
 				muiTableBodyCellEditTextFieldProps: ({ cell }: any) => ({
 					...getCommonEditTextFieldProps(cell),
@@ -206,6 +197,17 @@ const UsersTable = () => {
 		],
 		[getCommonEditTextFieldProps]
 	);
+
+	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
+		useGetAllUsersQuery({
+			pollingInterval: 0, // disable polling for this query
+			refetchOnMountOrArgChange: true,
+		});
+
+	if (isError) return <div>failed to load</div>;
+	if (isLoading) return <div>loading...</div>;
+
+	tableData.length < 1 && setTableData((tableData: any) => currentData);
 
 	return (
 		<>
@@ -263,9 +265,9 @@ const UsersTable = () => {
 };
 
 interface CreateModalProps {
-	columns: MRT_ColumnDef<Person>[];
+	columns: MRT_ColumnDef<any>[];
 	onClose: () => void;
-	onSubmit: (values: Person) => void;
+	onSubmit: (values: any) => void;
 	open: boolean;
 }
 

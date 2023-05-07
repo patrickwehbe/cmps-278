@@ -8,8 +8,11 @@ import Skeleton from "@mui/material/Skeleton";
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import Footer from "../components/Footer";
+import { useDispatch } from "react-redux";
+import { setVisited } from "../redux/auth";
 
 function Application() {
+	const dispatch = useDispatch();
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
 		useGetAllApplicationsQuery({
 			pollingInterval: 0, // disable polling for this query
@@ -75,10 +78,17 @@ function Application() {
 			<div className="application">
 				{chunkedData.map((column: any[], columnIndex: any) => (
 					<div key={`column-${columnIndex}`} className="application-column">
-						{column.map((application) => (
+						{column.map((application: any) => (
 							<div
 								key={application.application_id}
 								className="application-card-wrapper"
+								onClick={() => {
+									const newApplication = {
+										...application,
+										filter: "applications",
+									};
+									dispatch(setVisited(newApplication));
+								}}
 							>
 								<Link
 									to={`/applications/${application.application_id}`}

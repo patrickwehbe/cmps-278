@@ -8,7 +8,7 @@ const bookControl = {
 			const result = await book.findAll();
 			return res.send(result);
 		} catch (err) {
-			return res.status(500).json({ msg: "error from the server side" });
+			return res.status(500).json({ msg: err.message });
 		}
 	},
 	getOneBook: async (req, res) => {
@@ -33,7 +33,7 @@ const bookControl = {
 			});
 			return res.send(newbook);
 		} catch (err) {
-			return res.status(500).json({ msg: "error from the server side" });
+			return res.status(500).json({ msg: err.message });
 		}
 	},
 	updateBook: async (req, res) => {
@@ -41,30 +41,23 @@ const bookControl = {
 			const { book_name, book_cover, book_price, book_author, book_rating } =
 				req.body;
 
-			const verifybook = await book.findOne({
-				where: { book_id: req.params.id },
-			});
-			if (verifybook) {
-				const updatedbook = await book.update(
-					{
-						book_name: book_name,
-						book_cover: book_cover,
-						book_price: book_price,
-						book_author: book_author,
-						book_rating: book_rating,
+			const updatedbook = await book.update(
+				{
+					book_name: book_name,
+					book_cover: book_cover,
+					book_price: book_price,
+					book_author: book_author,
+					book_rating: book_rating,
+				},
+				{
+					where: {
+						book_id: req.body.book_id,
 					},
-					{
-						where: {
-							book_id: req.params.id,
-						},
-					}
-				);
-				return res.send(updatedbook);
-			} else {
-				return res.status(404).send("Object not found in db");
-			}
+				}
+			);
+			return res.send(updatedbook);
 		} catch (err) {
-			return res.status(500).json({ msg: "error from the server side" });
+			return res.status(500).json({ msg: err.message });
 		}
 	},
 	deleteBook: async (req, res) => {
