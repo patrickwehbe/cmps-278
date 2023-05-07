@@ -77,6 +77,9 @@ const Application = db.define(
 			allowNull: false,
 			unique: true,
 		},
+		application_description: {
+			type: sequelize.STRING,
+		},
 	},
 	{
 		sequelize,
@@ -93,7 +96,6 @@ const Application = db.define(
 	}
 );
 
-
 // Drop table if the Schema changed
 
 // db.sync().then(() => {
@@ -102,7 +104,7 @@ const Application = db.define(
 
 //Edit Column
 
-// queryInterface.addColumn("Application", "gender", sequelize.STRING),
+// queryInterface.addColumn("applications", "application_description", sequelize.STRING),
 // 	queryInterface.addColumn("Application", "birthDate", sequelize.STRING);
 // queryInterface.addColumn("Application", "phoneNumber", sequelize.STRING);
 

@@ -9,7 +9,7 @@ interface Country {
 const theme = createTheme({
 	palette: {
 		primary: {
-			main: "#f2f2f2",
+			main: "#FFFFFF",
 		},
 		secondary: {
 			main: "#fbc02d",
@@ -21,7 +21,7 @@ const theme = createTheme({
 const useStyles = makeStyles(() => ({
 	root: {
 		backgroundColor: theme.palette.primary.main,
-		color: theme.palette.common.white,
+		color: "black",
 		paddingTop: theme.spacing(6),
 		paddingBottom: theme.spacing(6),
 		marginTop: theme.spacing(6),
@@ -81,12 +81,20 @@ const Footer: React.FC = () => {
 
 	return (
 		<>
-			<Divider />
+			<Divider style={{ marginTop: "2vh" }} />
 			<footer className={classes.root}>
 				<Container maxWidth="lg">
 					<Grid container justifyContent="space-between" alignItems="center">
 						<Grid item>
-							<Typography variant="h6">Google Store</Typography>
+							<img
+								src="https://logos-world.net/wp-content/uploads/2020/12/Google-Play-Logo.png"
+								style={{ objectFit: "contain", height: "80px" }}
+							/>
+							<Typography variant="body2" color="inherit">
+								{userCountry
+									? userCountry.name
+									: "Fetching the country..."}
+							</Typography>
 						</Grid>
 						<Grid item>
 							<Link href="#" className={classes.link}>
@@ -104,6 +112,7 @@ const Footer: React.FC = () => {
 							<Link href="#" className={classes.link}>
 								Contact
 							</Link>
+
 							<Link href="#" className={classes.socialIcon}>
 								<i className="fab fa-facebook-f"></i>
 							</Link>

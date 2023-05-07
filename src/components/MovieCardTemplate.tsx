@@ -10,7 +10,7 @@ import {
 	Typography,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { PlayCircleOutline } from "@mui/icons-material";
 
 export default function MovieCardTemplate({
 	movie_id,
@@ -69,7 +69,7 @@ export default function MovieCardTemplate({
 					}}
 					onClick={handlePlayClick}
 				>
-					<PlayArrowIcon
+					<PlayCircleOutline
 						sx={{
 							fontSize: "50px",
 							color: "#fff",
@@ -81,7 +81,11 @@ export default function MovieCardTemplate({
 			</CardMedia>
 
 			<CardContent>
-				<Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+				<Stack
+					direction={{ xs: "column", sm: "row" }}
+					alignItems="center"
+					spacing={2}
+				>
 					<div className="appDetails2">
 						<Typography
 							variant="body1"

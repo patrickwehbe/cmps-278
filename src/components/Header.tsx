@@ -15,6 +15,9 @@ import { styled } from "@mui/material/styles";
 
 import { grey } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
+import ChooseCurrency from "./ChooseCurrency";
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/auth";
 
 interface HeaderProps {
 	onTabChange: (newValue: string) => void;
@@ -35,6 +38,7 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [activeTab, setActiveTab] = useState<string>("Games");
+	const user = useSelector(selectUser);
 
 	const navigate = useNavigate();
 
@@ -48,6 +52,7 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 		};
 
 		window.addEventListener("scroll", handleScroll);
+		console.log(user);
 
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
@@ -64,6 +69,7 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 				position: "sticky",
 				boxShadow: isScrolled ? "0px 0px 10px rgba(0, 0, 0, 0.2)" : "none",
 				transition: "box-shadow 0.3s ease-in-out",
+				padding: "0px 20px",
 			}}
 		>
 			<Toolbar sx={{ justifyContent: "space-between" }}>
@@ -124,18 +130,16 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 					</StyledTabs>
 				</Box>
 				<Box display="flex" alignItems="center">
-					<IconButton aria-label="search">
-						<SearchIcon />
-					</IconButton>
 					<IconButton aria-label="help">
 						<HelpOutlineIcon />
 					</IconButton>
 					<IconButton aria-label="avatar" onClick={handleMenuOpen}>
 						<StyledAvatar
-							alt="User Avatar"
-							src="https://picsum.photos/id/237/200/200"
+							alt={user?.user_username.charAt(0)}
+							src={user?.user_image}
 						/>
 					</IconButton>
+					<ChooseCurrency />
 					<StyledMenu
 						anchorEl={anchorEl}
 						open={Boolean(anchorEl)}

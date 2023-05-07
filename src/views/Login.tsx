@@ -56,6 +56,10 @@ const Login = () => {
 				body: JSON.stringify({ email, password }),
 			});
 			const data: any = await response.json();
+
+			if (data.error) {
+				return alert(data.error);
+			}
 			dispatch(login(data));
 			navigate("/games");
 		} catch (err) {}

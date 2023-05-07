@@ -178,7 +178,6 @@ function Game() {
 
 	return (
 		<>
-		<Carousel
 			<AppCard
 				imageUrl={
 					"https://play-lh.googleusercontent.com/S6JjxuO4N4dlmxGLy7je09jdL9_qacnaU7AcUOW3qygcJogqZpAHQEE6PTgLGsLhkUDitJsMpdE=w648-h364-rw"

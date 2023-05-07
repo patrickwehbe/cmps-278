@@ -8,6 +8,7 @@ import {
 	DialogActions,
 	Typography,
 	createTheme,
+	Button,
 } from "@mui/material";
 import { Email } from "@mui/icons-material";
 
@@ -97,27 +98,37 @@ const NewsletterPopup: React.FC = () => {
 	};
 
 	return (
-		<>
-			<IconButton className={classes.iconButton} onClick={() => setOpen(true)}>
-				<Email />
-			</IconButton>
+		<div>
 			<Dialog open={open} onClose={handleClose}>
 				<DialogTitle className={classes.dialogTitle}>
 					Subscribe to Our Newsletter
 				</DialogTitle>
 				<DialogContent className={classes.dialogContent}>
+					<br />
 					<Typography variant="body1" align="center" gutterBottom>
 						Don't miss out on our latest news and updates!
 					</Typography>
-					{/* Add your newsletter signup form here */}
+					<div
+						className=""
+						style={{
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+							width: "100%",
+						}}
+					>
+						<IconButton onClick={handleClose}>
+							<Email />
+						</IconButton>
+
+						<input type="email" placeholder="you@mail.com" />
+					</div>
 				</DialogContent>
 				<DialogActions className={classes.dialogActions}>
-					<IconButton onClick={handleClose}>
-						<Email />
-					</IconButton>
+					<Button onClick={handleClose}>Send</Button>
 				</DialogActions>
 			</Dialog>
-		</>
+		</div>
 	);
 };
 

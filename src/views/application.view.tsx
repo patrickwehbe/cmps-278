@@ -110,6 +110,11 @@ function Application() {
 				))}
 			</div>
 			<h2 className="recommendedtext">Recommended for you</h2>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
 			<div className="application2">
 				{recommendedApps.map(
 					(application: {
@@ -145,6 +150,11 @@ function Application() {
 			</div>
 
 			<h2 className="recommendedtext">New Releases</h2>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
 			<div className="application2">
 				{newReleasesApps.map(
 					(application: {
@@ -180,6 +190,12 @@ function Application() {
 			</div>
 
 			<h2 className="recommendedtext">Top Selling</h2>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+
 			<div className="application2">
 				{topSellingApps.map(
 					(application: {

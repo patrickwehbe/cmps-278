@@ -19,6 +19,7 @@ import ApplicationsTable from "./components/ApplicationsTable";
 import GamesTable from "./components/GamesTable";
 import UsersTable from "./components/UsersTable";
 import Footer from "./components/Footer";
+import TermsOfServicePage from "./components/TermsOfServicePage";
 
 function App() {
 	return (
@@ -31,6 +32,7 @@ function App() {
 				/>
 				<Routes>
 					<Route path="/" element={<Login />} />
+					<Route path="/terms" element={<TermsOfServicePage />} />
 					<Route path="/admin" element={<AdminView />} />
 					<Route path="/admin/users" element={<UsersTable />} />
 					<Route path="/admin/games" element={<GamesTable />} />
