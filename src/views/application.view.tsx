@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Application.css";
 import ApplicationCardTemplate from "../components/ApplicationCardTemplate";
 import ApplicationCardTemplate2 from "../components/ApplicationCardTemplate2";
@@ -6,10 +6,43 @@ import { useGetAllApplicationsQuery } from "../api/applications.api";
 import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import { Link } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, InputAdornment, MenuItem } from "@mui/material";
 import Footer from "../components/Footer";
 import { useDispatch } from "react-redux";
 import { setVisited } from "../redux/auth";
+import { styled } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import SearchIcon from "@mui/icons-material/Search";
+
+const SearchContainer = styled("div")(({ theme }) => ({
+	display: "flex",
+	flexDirection: "row",
+	alignItems: "center",
+	justifyContent: "space-between",
+	padding: "20px",
+	width: "100%",
+	borderRadius: "120px",
+}));
+
+const SearchInput = styled(TextField)(({ theme }) => ({
+	width: "50%",
+	[theme.breakpoints.down("sm")]: {
+		width: "100%",
+	},
+	borderRadius: "120px",
+}));
+
+const FilterSelect = styled(Select)(({ theme }) => ({
+	minWidth: "100px",
+	marginLeft: "20px",
+	[theme.breakpoints.down("sm")]: {
+		marginLeft: 0,
+		marginTop: "20px",
+		minWidth: 0,
+		width: "100%",
+	},
+}));
 
 function Application() {
 	const dispatch = useDispatch();
@@ -18,6 +51,9 @@ function Application() {
 			pollingInterval: 0, // disable polling for this query
 			refetchOnMountOrArgChange: true,
 		});
+
+	const [keyword, setKeyword] = useState("");
+	const [categoryFilter, setCategoryFilter] = useState("");
 	if (isLoading) return <CircularProgress />;
 
 	if (isError) return <div>An error has occurred!</div>;
@@ -73,8 +109,40 @@ function Application() {
 		  }, [])
 		: [];
 
+	const categorySet = new Set(
+		currentData.map((application: any) => application.application_author)
+	);
+
 	return (
 		<div>
+			<SearchContainer>
+				<SearchInput
+					label="Search"
+					variant="outlined"
+					value={keyword}
+					onChange={(e) => setKeyword(e.target.value)}
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end">
+								<SearchIcon />
+							</InputAdornment>
+						),
+					}}
+				/>
+
+				<FilterSelect
+					value={categoryFilter}
+					onChange={(e) => setCategoryFilter(e.target.value)}
+					displayEmpty
+				>
+					<MenuItem value="">All</MenuItem>
+					{[...categorySet].map((category) => (
+						<MenuItem key={category} value={category}>
+							{category}
+						</MenuItem>
+					))}
+				</FilterSelect>
+			</SearchContainer>
 			<div className="application">
 				{chunkedData.map((column: any[], columnIndex: any) => (
 					<div key={`column-${columnIndex}`} className="application-column">
