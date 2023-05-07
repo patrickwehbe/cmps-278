@@ -8,6 +8,7 @@ import { movieApi } from "../api/movie.api";
 import { appreviewApi } from "../api/appreview.api";
 import { appreplyApi } from "../api/appreply.api"; // Import appreplyApi
 import auth from "./auth";
+import { bookreviewApi } from "../api/bookreview.api";
 
 export const store = configureStore({
 	reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
 		[movieApi.reducerPath]: movieApi.reducer,
 		[appreviewApi.reducerPath]: appreviewApi.reducer,
 		[appreplyApi.reducerPath]: appreplyApi.reducer,
+		[bookreviewApi.reducerPath]:bookreviewApi.reducer,
 		auth: auth,
 	},
 	middleware: (gDM) =>
@@ -30,7 +32,8 @@ export const store = configureStore({
 			gameApi.middleware,
 			movieApi.middleware,
 			appreviewApi.middleware,
-			appreplyApi.middleware
+			appreplyApi.middleware,
+			bookreviewApi.middleware
 		),
 });
 

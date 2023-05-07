@@ -1,5 +1,4 @@
 // src/containers/bookDetailPage.tsx
-import React from "react";
 import { useParams } from "react-router-dom";
 import BookDetail from "../components/BookDetails";
 import { useGetOneBookQuery } from "../api/books.api";
@@ -7,6 +6,12 @@ import { useGetAllBooksQuery } from "../api/books.api";
 import BookCardTemplate from "../components/BooksCardTemplate";
 import { Link } from "react-router-dom";
 import { useGetAllUsersQuery } from '../api/user.api';
+import LinearProgress from "@mui/material/LinearProgress";
+import Box from "@mui/material/Box";
+import { Button } from "@mui/material";
+import React, { useState } from "react";
+import { useGetAllBookReviewsQuery } from "../api/bookreview.api";
+
 
 
 
@@ -26,6 +31,101 @@ function BookDetailPage() {
 						book.book_id != data.book_id
 			  )
 			: [];
+			const { data: reviews } = useGetAllBookReviewsQuery({
+				pollingInterval: 0,
+				refetchOnMountOrArgChange: true,
+			});
+			console.log(reviews);
+		
+			const { data: users } = useGetAllUsersQuery(undefined, {
+				pollingInterval: 0,
+				refetchOnMountOrArgChange: true,
+			});
+			console.log(users);
+		
+			const filteredReviews =
+				reviews && data
+					? reviews.filter((review: any) => review.book_fid === data.book_id)
+					: [];
+		
+			console.log(filteredReviews);
+		
+			const calculateAverageRating = () => {
+				if (filteredReviews.length === 0) {
+					return 0;
+				}
+		
+				const sumRatings = filteredReviews.reduce(
+					(sum: any, review: any) => sum + review.review_rating,
+					0
+				);
+				return sumRatings / filteredReviews.length;
+			};
+		
+			const averageRating = calculateAverageRating();
+		
+			const calculateRatingPercentages = () => {
+				const ratingCounts = [0, 0, 0, 0, 0];
+		
+				filteredReviews.forEach((review: any) => {
+					ratingCounts[review.review_rating - 1]++;
+				});
+		
+				const totalRatings = filteredReviews.length;
+				const percentages = ratingCounts.map((count) =>
+					totalRatings === 0 ? 0 : (count / totalRatings) * 100
+				);
+		
+				return percentages;
+			};
+		
+			const renderRatingBars = () => {
+				const ratingPercentages = calculateRatingPercentages();
+		
+				return ratingPercentages.map((percentage, index) => (
+					<Box
+						key={index}
+						sx={{
+							display: "flex",
+							alignItems: "center",
+							marginBottom: 1,
+							marginLeft: "7%",
+							marginRight: "7%",
+							width: "50%",
+						}}
+					>
+						<Box
+							sx={{
+								marginRight: 1,
+							}}
+						>
+							{index + 1}
+						</Box>
+						<LinearProgress
+							variant="determinate"
+							value={percentage}
+							sx={{
+								flexGrow: 1,
+								marginRight: 1,
+							}}
+						/>
+						<Box
+							sx={{
+								marginLeft: 1,
+							}}
+						></Box>
+					</Box>
+				));
+			};
+		
+			const [showAllReviews, setShowAllReviews] = useState(false);
+		
+			const reviewsToShow = showAllReviews ? filteredReviews : filteredReviews.slice(0, 5);
+		
+			const handleShowMoreReviews = () => {
+				setShowAllReviews(!showAllReviews);
+			};
+		
 
 	if (isLoading) return <div>Loading...</div>;
 
