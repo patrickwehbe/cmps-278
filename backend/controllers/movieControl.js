@@ -13,9 +13,7 @@ const movieControl = {
 	},
 	getOneMovie: async (req, res) => {
 		try {
-			const movie = await Movie.findOne({
-				where: req.movie.movie_id,
-			});
+			const movie = await Movie.findByPk(req.params.id);
 			return res.send(movie);
 		} catch (err) {
 			return res.status(500).send(err.message);
@@ -33,6 +31,7 @@ const movieControl = {
 				movie_category,
 				movie_cast,
 				movie_trailer,
+				movie_description,
 			} = req.body;
 
 			const newMovie = await Movie.create({

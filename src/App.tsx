@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Book from "./views/book.view";
 import GameDetailPage from "./views/GameDetailPage";
 import BookDetailPage from "./views/BookDetailPage";
+import MovieDetailPage from "./views/MovieDetailPage";
 import AdminView from "./views/admin.view";
 import MoviesTable from "./components/MoviesTable";
 import BooksTable from "./components/BooksTable";
@@ -55,6 +56,7 @@ function App() {
 					<Route path="/games/:id" element={<GameDetailPage />} />
 					<Route path="/books" element={<Book />} />
 					<Route path="/books/:id" element={<BookDetailPage />} />
+					<Route path="/movies/:id" element={<MovieDetailPage/>} />
 				</Routes>
 			</Router>
 		</div>
