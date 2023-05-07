@@ -47,8 +47,8 @@ export default function AppReview({
 
 
   useEffect(() => {
-    setReplyList(replies);
-    }, [replies, addAppReply, replyList]);
+		setReplyList(replies);
+	}, [addAppReply]);
 
 
   const { data: allUsers } = useGetAllUsersQuery({});

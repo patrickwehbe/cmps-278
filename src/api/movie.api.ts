@@ -15,7 +15,7 @@ export const movieApi = createApi({
 
 		// GET one movie start region
 		getOneMovie: build.query({
-			query: (id) => `/${id}`,
+			query: (id) => `/one/${id}`,
 		}),
 		// GET one movie end region
 

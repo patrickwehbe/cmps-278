@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Skeleton from "@mui/material/Skeleton";
 import { CircularProgress } from "@mui/material";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 function Movie() {
 	const { currentData, isError, isLoading, isSuccess, error, isFetching } =
@@ -132,6 +133,9 @@ function Movie() {
 																movie_trailer={
 																	movie.movie_trailer
 																}
+																movie_description={
+																	movie.movie_description
+																}
 															/>
 														</div>
 													))}
@@ -153,8 +157,16 @@ function Movie() {
 												movie_image: any;
 												movie_released: any;
 												movie_category: any;
+												movie_description: any;
 											}) => (
 												<div className="movie-card">
+													<Link
+													to={`/movies/${movie.movie_id}`}
+													style={{
+														textDecoration: "none",
+														color: "inherit", // Adjust the color value as needed
+													}}
+												>
 													<MovieCardTemplate2
 														movie_id={movie.movie_id}
 														movie_name={movie.movie_name}
@@ -170,7 +182,11 @@ function Movie() {
 														movie_category={
 															movie.movie_category
 														}
+														movie_description={
+															movie.movie_description
+														}
 													/>
+													</Link>
 												</div>
 											)
 										)}
@@ -188,8 +204,16 @@ function Movie() {
 											movie_image: any;
 											movie_released: any;
 											movie_category: any;
+											movie_description: any;
 										}) => (
 											<div className="movie-card">
+												<Link
+													to={`/movies/${movie.movie_id}`}
+													style={{
+														textDecoration: "none",
+														color: "inherit", // Adjust the color value as needed
+													}}
+												>
 												<MovieCardTemplate2
 													movie_id={movie.movie_id}
 													movie_name={movie.movie_name}
@@ -199,7 +223,11 @@ function Movie() {
 													movie_image={movie.movie_image}
 													movie_released={movie.movie_released}
 													movie_category={movie.movie_category}
+													movie_description={
+														movie.movie_description
+													}
 												/>
+												</Link>
 											</div>
 										)
 									)}
@@ -217,8 +245,16 @@ function Movie() {
 										movie_image: any;
 										movie_released: any;
 										movie_category: any;
+										movie_description: any;
 									}) => (
 										<div className="movie-card">
+												<Link
+													to={`/movies/${movie.movie_id}`}
+													style={{
+														textDecoration: "none",
+														color: "inherit", // Adjust the color value as needed
+													}}
+												>
 											<MovieCardTemplate2
 												movie_id={movie.movie_id}
 												movie_name={movie.movie_name}
@@ -228,7 +264,11 @@ function Movie() {
 												movie_image={movie.movie_image}
 												movie_released={movie.movie_released}
 												movie_category={movie.movie_category}
+												movie_description={
+													movie.movie_description
+												}
 											/>
+											</Link>
 										</div>
 									)
 								)}
@@ -246,8 +286,16 @@ function Movie() {
 									movie_image: any;
 									movie_released: any;
 									movie_category: any;
+									movie_description: any;
 								}) => (
 									<div className="movie-card">
+										<Link
+											to={`/movies/${movie.movie_id}`}
+											style={{
+											textDecoration: "none",
+											color: "inherit", // Adjust the color value as needed
+											}}
+												>
 										<MovieCardTemplate2
 											movie_id={movie.movie_id}
 											movie_name={movie.movie_name}
@@ -257,7 +305,11 @@ function Movie() {
 											movie_image={movie.movie_image}
 											movie_released={movie.movie_released}
 											movie_category={movie.movie_category}
+											movie_description={
+												movie.movie_description
+											}
 										/>
+										</Link>
 									</div>
 								)
 							)}
@@ -275,8 +327,16 @@ function Movie() {
 								movie_image: any;
 								movie_released: any;
 								movie_category: any;
+								movie_description: any;
 							}) => (
 								<div className="movie-card">
+									<Link
+											to={`/movies/${movie.movie_id}`}
+											style={{
+											textDecoration: "none",
+											color: "inherit", // Adjust the color value as needed
+											}}
+												>
 									<MovieCardTemplate2
 										movie_id={movie.movie_id}
 										movie_name={movie.movie_name}
@@ -286,7 +346,11 @@ function Movie() {
 										movie_image={movie.movie_image}
 										movie_released={movie.movie_released}
 										movie_category={movie.movie_category}
+										movie_description={
+											movie.movie_description
+										}
 									/>
+									</Link>
 								</div>
 							)
 						)}
@@ -304,8 +368,16 @@ function Movie() {
 							movie_image: any;
 							movie_released: any;
 							movie_category: any;
+							movie_description: any;
 						}) => (
 							<div className="movie-card">
+											<Link
+											to={`/movies/${movie.movie_id}`}
+											style={{
+											textDecoration: "none",
+											color: "inherit", // Adjust the color value as needed
+											}}
+												>
 								<MovieCardTemplate2
 									movie_id={movie.movie_id}
 									movie_name={movie.movie_name}
@@ -315,7 +387,11 @@ function Movie() {
 									movie_image={movie.movie_image}
 									movie_released={movie.movie_released}
 									movie_category={movie.movie_category}
+									movie_description={
+										movie.movie_description
+									}
 								/>
+								</Link>
 							</div>
 						)
 					)}
@@ -333,8 +409,16 @@ function Movie() {
 						movie_image: any;
 						movie_released: any;
 						movie_category: any;
+						movie_description: any;
 					}) => (
 						<div className="movie-card">
+											<Link
+											to={`/movies/${movie.movie_id}`}
+											style={{
+											textDecoration: "none",
+											color: "inherit", // Adjust the color value as needed
+											}}
+												>
 							<MovieCardTemplate2
 								movie_id={movie.movie_id}
 								movie_name={movie.movie_name}
@@ -344,7 +428,11 @@ function Movie() {
 								movie_image={movie.movie_image}
 								movie_released={movie.movie_released}
 								movie_category={movie.movie_category}
+								movie_description={
+									movie.movie_description
+								}
 							/>
+							</Link>
 						</div>
 					)
 				)}

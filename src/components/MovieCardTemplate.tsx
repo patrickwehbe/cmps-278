@@ -21,6 +21,7 @@ export default function MovieCardTemplate({
 	movie_director,
 	date_released,
 	movie_trailer,
+	movie_description,
 }: any) {
 	const [openModal, setOpenModal] = useState(false);
 
