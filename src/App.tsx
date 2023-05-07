@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Home from "./views/home.view";
 import Value from "./views/value.view";
@@ -22,8 +22,12 @@ import Footer from "./components/Footer";
 import TermsOfServicePage from "./components/TermsOfServicePage";
 import Wishlist from "./components/WishList";
 import LastVisited from "./components/LastVisited";
+import { useSelector } from "react-redux";
+import { selectUser } from "./redux/auth";
 
 function App() {
+	const user = useSelector(selectUser);
+
 	return (
 		<div className="app">
 			<Router>

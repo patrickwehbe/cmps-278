@@ -26,10 +26,21 @@ const authSlice = createSlice({
 			state.wishlist = action.payload.user.wishlist
 				? JSON.parse(action.payload.user.wishlist)
 				: [];
+
+			localStorage.setItem("user", JSON.stringify(state.user));
+			localStorage.setItem("accessToken", action.payload.accesstoken);
+			localStorage.setItem("refreshToken", action.payload.refreshtoken);
 		},
 		logout: (state) => {
 			state.isLoggedIn = false;
 			state.user = null;
+			state.accessToken = null;
+			state.refreshToken = null;
+			state.lastVisited = [];
+			state.wishlist = [];
+			localStorage.removeItem("user");
+			localStorage.removeItem("accessToken");
+			localStorage.removeItem("refreshToken");
 		},
 		register: (state, action) => {
 			state.isLoggedIn = true;

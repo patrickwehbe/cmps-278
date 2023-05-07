@@ -46,6 +46,7 @@ const GameColumn = styled("div")(({ theme }) => ({
 	padding: "20px",
 	flexBasis: "25%",
 	flexShrink: 0,
+	borderRadius: "20px",
 }));
 
 const SearchContainer = styled("div")(({ theme }) => ({
@@ -96,7 +97,7 @@ function Game() {
 	const [categoryFilter, setCategoryFilter] = useState("");
 
 	const handleClick = (game: any) => {
-		dispatch(wishlist(game));
+		dispatch(addWishlist(game));
 		navigate(`/games/${game.game_id}`);
 	};
 

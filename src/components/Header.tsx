@@ -38,7 +38,8 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [activeTab, setActiveTab] = useState<string>("Games");
-	const user = useSelector(selectUser);
+	const token = localStorage.getItem("token");
+	var user = useSelector(selectUser);
 
 	const navigate = useNavigate();
 
@@ -52,7 +53,6 @@ const Header: React.FC<HeaderProps> = ({ onTabChange }) => {
 		};
 
 		window.addEventListener("scroll", handleScroll);
-		console.log(user);
 
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
